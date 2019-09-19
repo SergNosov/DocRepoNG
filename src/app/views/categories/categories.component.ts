@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Category} from '../../model/Category';
 import {RepoCategory} from "../../model/RepoCategory";
 import {DataHandlerService} from "../../service/data-handler.service";
-import {Subject} from "rxjs";
 import {Router} from "@angular/router";
 
 @Component({
