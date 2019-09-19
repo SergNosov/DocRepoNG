@@ -85,7 +85,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "DocRepoNG:build"
+            "browserTarget": "DocRepoNG:build",
+            "port": 4201
           },
           "configurations": {
             "production": {

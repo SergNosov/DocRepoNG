@@ -1,0 +1,21 @@
+<div class="card">
+    <div class="card-header card-header-warning">
+        <h4 class="card-title">Справочник отправителей</h4>
+    </div>
+    <div class="card-body table-responsive">
+        <table class="table table-hover">
+            <thead class="text-warning">
+            <th>#</th>
+            <th>Id</th>
+            <th>Отправитель</th>
+            </thead>
+            <tbody>
+            <tr *ngFor="let sender of senders; let i = index" >
+                <td>{{i + 1}}</td>
+                <td>{{sender.id}}</td>
+                <td>{{sender.title}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
