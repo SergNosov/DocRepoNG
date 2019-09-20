@@ -13,6 +13,8 @@
             <th>Отправитель</th>
             <th>Заголовок</th>
             <th>Содержание</th>
+            <th>Действие</th>
+
         </thead>
         <tbody>
         <tr *ngFor="let doc of documents; let i = index" >
@@ -20,10 +22,23 @@
             <td>{{doc.id}}</td>
             <td>{{doc.doctype.title}}</td>
             <td>{{doc.num}}</td>
-            <td>{{doc.date}}</td>
-            <td>{{doc.senders}}</td>
+            <td>{{doc.date | date :'dd.MM.yyyy'}}</td>
+            <td>
+                <div *ngFor="let sender of doc.senders">
+                    {{sender.title}};
+                </div>
+            </td>
             <td>{{doc.title}}</td>
             <td>{{doc.context}}</td>
+            <td class="td-actions text-right">
+                <button type="button" rel="tooltip" title="" class="btn btn-primary btn-link btn-sm" data-original-title="Edit Task">
+                    <i class="material-icons">edit</i>
+                    <div class="ripple-container"></div>
+                </button>
+                <button type="button" rel="tooltip" title="" class="btn btn-danger btn-link btn-sm" data-original-title="Remove">
+                    <i class="material-icons">close</i>
+                </button>
+            </td>
         </tr>
         </tbody>
     </table>

@@ -32,16 +32,17 @@ export class TestData {
   ];
 
   static documents: Document[] = [
-    new Document(111, '123', new Date('2019-04-10'), 'документ о чем-то там', TestData.doctypes[0],[TestData.senders[4]], 'анонимка'),
-    new Document(2, '265-р', new Date('2017-04-10'), 'распоряжение о приеме в собственность', TestData.doctypes[2],[TestData.senders[0]], 'принять  в собственность перечень объектов'),
-    new Document(3, '676562-рп/65', new Date('2018-04-10'), 'разрешить вопрос', TestData.doctypes[1],[TestData.senders[2]], 'анонимка'),
-    new Document(4, '764', new Date('2019-05-17'), 'запрос документов', TestData.doctypes[4],[TestData.senders[4]], 'перечень'),
-    new Document(5, '3', new Date('2013-04-10'), 'никто читать не будет', TestData.doctypes[7],[TestData.senders[6], TestData.senders[4]], 'очень много страниц'),
-    new Document(6, 'вз 654', new Date('2012-04-10'), 'очередной шлак', TestData.doctypes[5],[TestData.senders[5]], 'передача куда-нибудь чего-нибудь'),
-    new Document(7, 'ФЗ-152', new Date('2016-04-10'), 'решение думы городского округа', TestData.doctypes[6],[TestData.senders[3]], 'решить'),
-    new Document(8, '986', new Date('2018-04-10'), 'документ о чем-то там', TestData.doctypes[9],[TestData.senders[1]], 'анонимка'),
-    new Document(9, 'ур76', new Date('2011-04-10'), 'документ о чем-то там', TestData.doctypes[3],[TestData.senders[7]], 'анонимка'),
-    new Document(10, 'Дело 34', new Date('2009-04-10'), 'документ о чем-то там', TestData.doctypes[8],[TestData.senders[9]], 'анонимка'),
+    new Document(111,  new Date('2019-04-10'), 'документ о чем-то там', TestData.doctypes[0],[TestData.senders[4]], '123','анонимка'),
+    new Document(112, new Date('2019-04-10'), 'документ о чем-то там', TestData.doctypes[0],[TestData.senders[4]], '','анонимка'),
+    new Document(2,  new Date('2017-04-10'), 'распоряжение о приеме в собственность', TestData.doctypes[2],[TestData.senders[0]], '265-р','принять  в собственность перечень объектов'),
+    new Document(3,  new Date('2018-04-10'), 'разрешить вопрос', TestData.doctypes[1],[TestData.senders[2]],'676562-рп/65', 'анонимка'),
+    new Document(4,  new Date('2019-05-17'), 'запрос документов', TestData.doctypes[4],[TestData.senders[4]], '764','перечень'),
+    new Document(5,  new Date('2013-04-10'), 'никто читать не будет', TestData.doctypes[7],[TestData.senders[6], TestData.senders[4]], '3','очень много страниц'),
+    new Document(6,  new Date('2012-04-10'), 'очередной шлак', TestData.doctypes[5],[TestData.senders[5]], 'вз 654','передача куда-нибудь чего-нибудь'),
+    new Document(7,  new Date('2016-04-10'), 'решение думы городского округа', TestData.doctypes[6],[TestData.senders[3]],'ФЗ-152','решить'),
+    new Document(8, new Date('2018-04-10'), 'документ о чем-то там', TestData.doctypes[9],[TestData.senders[1]], '986','анонимка'),
+    new Document(9,  new Date('2011-04-10'), 'документ о чем-то там', TestData.doctypes[3],[TestData.senders[7]], 'ур76','анонимка'),
+    new Document(10,  new Date('2009-04-10'), 'документ о чем-то там', TestData.doctypes[8],[TestData.senders[9]], 'Дело 34','анонимка'),
   ];
 
     static repoCategory: RepoCategory[] = [

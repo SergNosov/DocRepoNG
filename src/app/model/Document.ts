@@ -10,7 +10,7 @@ export class Document {
   private _senders: Sender[];
   private _context?: string;
 
-  constructor(id: number, num: string, date: Date, title: string, doctype: Doctype, senders: Sender[], context: string) {
+  constructor(id: number, date: Date, title: string, doctype: Doctype, senders: Sender[], num?: string, context?: string) {
     this._id = id;
     this._num = num;
     this._date = date;

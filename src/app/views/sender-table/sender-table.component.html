@@ -8,12 +8,22 @@
             <th>#</th>
             <th>Id</th>
             <th>Отправитель</th>
+            <th>Действие</th>
             </thead>
             <tbody>
             <tr *ngFor="let sender of senders; let i = index" >
                 <td>{{i + 1}}</td>
                 <td>{{sender.id}}</td>
                 <td>{{sender.title}}</td>
+                <td class="td-actions text-right">
+                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-link btn-sm" data-original-title="Edit Task">
+                        <i class="material-icons">edit</i>
+                        <div class="ripple-container"></div>
+                    </button>
+                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-link btn-sm" data-original-title="Remove">
+                        <i class="material-icons">close</i>
+                    </button>
+                </td>
             </tr>
             </tbody>
         </table>
