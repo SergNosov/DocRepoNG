@@ -1,0 +1,68 @@
+<div class="col-md-8">
+    <div class="card">
+        <div class="card-header card-header-primary">
+            <h4 class="card-title">Редактирование документа</h4>
+            <p class="card-category">(*) - поля обязатенлные для ввода</p>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="tempDoc" (ngSubmit)="onSubmit()">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="form-group bmd-form-group">
+                            <label>Id</label>
+                            <input type="text" class="form-control" formControlName="id">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group bmd-form-group">
+                            <label>Номер</label>
+                            <input  type="text" class="form-control"  formControlName="ndoc">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group bmd-form-group">
+                            <label>Дата(*)</label>
+                            <input type="date" class="form-control" formControlName="dateDoc">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group bmd-form-group">
+                            <label>Тип документа(*)</label>
+                            <input type="text" class="form-control" formControlName="docType">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group bmd-form-group">
+                            <label>Отправитель(*)</label>
+                            <input type="text" class="form-control" formControlName="senders">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group bmd-form-group">
+                            <label>Заголовок(*)</label>
+                            <input type="text" class="form-control" formControlName="title">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Содержание</label>
+                            <div class="form-group bmd-form-group">
+                                <textarea class="form-control" rows="5"  formControlName="context"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary pull-right" [disabled]="!tempDoc.valid">Сохранить</button>
+                <div class="clearfix">
+                    <a href="/documents">вернуться к списку документов</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

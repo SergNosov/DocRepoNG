@@ -6,6 +6,10 @@ import { DocumentsTableComponent } from './views/documents-table/documents-table
 import {AppRoutingModule} from "./app-routing.module";
 import { SenderTableComponent } from './views/sender-table/sender-table.component';
 import { DoctypeTableComponent } from './views/doctype-table/doctype-table.component';
+import { DocumentFormComponent } from './views/document-form/document-form.component';
+import {StyleLabelInputDirective} from "./directives/styleLabelInput.directive";
+import {ReactiveFormsModule} from "@angular/forms";
+
 
 @NgModule({
   declarations: [
@@ -13,11 +17,14 @@ import { DoctypeTableComponent } from './views/doctype-table/doctype-table.compo
     CategoriesComponent,
     DocumentsTableComponent,
     SenderTableComponent,
-    DoctypeTableComponent
+    DoctypeTableComponent,
+    DocumentFormComponent,
+    StyleLabelInputDirective
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
