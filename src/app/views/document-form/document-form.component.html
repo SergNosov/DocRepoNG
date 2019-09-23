@@ -40,8 +40,9 @@
                                 <option value="" disabled>---</option>
                                 <option *ngFor="let tempDoctype of doctypes" [ngValue]="tempDoctype">{{tempDoctype.title}}</option>
                             </select>
-                            <div class="alert alert-danger small" *ngIf="tempDoc.controls['docType'] == null"
-                            >
+<!--                            <div class="alert alert-danger small" *ngIf="tempDoc.controls['docType'] == null">-->
+                            <div class="alert alert-danger small" *ngIf="tempDoc.controls['docType'].invalid &&
+                                                                    tempDoc.controls['docType'].touched">
                                 Не указан тип документа.
                             </div>
                         </div>
@@ -53,6 +54,10 @@
                             <select class="custom-select" formControlName="senders" multiple>
                                 <option *ngFor="let tempSender of senders" [ngValue]="tempSender">{{tempSender.title}}</option>
                             </select>
+                            <div class="alert alert-danger small" *ngIf="tempDoc.controls['senders'].invalid &&
+                                                                    tempDoc.controls['senders'].touched">
+                                Не указан тип документа.
+                            </div>
                         </div>
                     </div>
                 </div>

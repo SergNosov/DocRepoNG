@@ -12,11 +12,21 @@ import {Doctype} from "../model/Doctype";
 export class DataHandlerService {
 
   repoCategories: RepoCategory[];
-  documentBehaviorSubject = new BehaviorSubject<Document[]>(TestData.documents);
+  private documents: Document[];
+  documentBehaviorSubject = new BehaviorSubject<Document[]>(this.documents);
   senderBehaviorSubject = new BehaviorSubject<Sender[]>(TestData.senders);
   doctypeBehaviorSubject = new BehaviorSubject<Doctype[]>(TestData.doctypes);
 
   constructor() {
     this.repoCategories = TestData.repoCategory;
+    this.documents = TestData.documents;
+    this.documentBehaviorSubject.next(this.documents);
+  }
+
+  deleteDocument(doc: Document) {
+    this.documents.forEach( (item, index) => {
+      if(item === doc) this.documents.splice(index,1);
+    });
+    this.documentBehaviorSubject.next(this.documents);
   }
 }

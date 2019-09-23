@@ -31,11 +31,16 @@
             <td>{{doc.title}}</td>
             <td>{{doc.context}}</td>
             <td class="td-actions text-right">
-                <button type="button" rel="tooltip" title="" class="btn btn-primary btn-link btn-sm" data-original-title="Edit Task">
+                <button type="button" rel="tooltip" title="Редактировать" class="btn btn-primary btn-link btn-sm" data-original-title="Edit Task">
                     <i class="material-icons">edit</i>
                     <div class="ripple-container"></div>
                 </button>
-                <button type="button" rel="tooltip" title="" class="btn btn-danger btn-link btn-sm" data-original-title="Remove">
+                <button type="button"
+                        rel="tooltip"
+                        title="Удалить"
+                        class="btn btn-danger btn-link btn-sm"
+                        data-original-title="Remove"
+                        (click) = "deleteDocument(doc)">
                     <i class="material-icons">close</i>
                 </button>
             </td>

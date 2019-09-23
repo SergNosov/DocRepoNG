@@ -18,9 +18,8 @@ export class DocumentFormComponent implements OnInit {
     id: [''],
     ndoc: [''],
     dateDoc: ['', Validators.required],
-  //  docType: [Doctype, Validators.required],
     docType: [null,Validators.required],
-    senders: [Sender, Validators.required],
+    senders: [null, Validators.required],
     title: ['', Validators.required],
     context: ['']
   });
@@ -33,6 +32,6 @@ export class DocumentFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.tempDoc);
+    console.log(this.tempDoc.value);
   }
 }
