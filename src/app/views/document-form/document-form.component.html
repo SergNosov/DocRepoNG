@@ -23,6 +23,11 @@
                         <div class="form-group bmd-form-group">
                             <label>Дата(*)</label>
                             <input type="date" class="form-control" formControlName="dateDoc">
+                            <div class="alert alert-danger small" *ngIf="tempDoc.controls['dateDoc'].invalid &&
+                                                                             tempDoc.controls['dateDoc'].touched"
+                            >
+                               Не указана дата документа.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -30,13 +35,24 @@
                     <div class="col-md-6">
                         <div class="form-group bmd-form-group">
                             <label>Тип документа(*)</label>
-                            <input type="text" class="form-control" formControlName="docType">
+                          <!--  <input type="text" class="form-control" formControlName="docType"> -->
+                            <select class="custom-select" formControlName="docType">
+                                <option value="" disabled>---</option>
+                                <option *ngFor="let tempDoctype of doctypes" [ngValue]="tempDoctype">{{tempDoctype.title}}</option>
+                            </select>
+                            <div class="alert alert-danger small" *ngIf="tempDoc.controls['docType'] == null"
+                            >
+                                Не указан тип документа.
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group bmd-form-group">
                             <label>Отправитель(*)</label>
-                            <input type="text" class="form-control" formControlName="senders">
+<!--                            <input type="text" class="form-control" formControlName="senders">-->
+                            <select class="custom-select" formControlName="senders" multiple>
+                                <option *ngFor="let tempSender of senders" [ngValue]="tempSender">{{tempSender.title}}</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -45,6 +61,11 @@
                         <div class="form-group bmd-form-group">
                             <label>Заголовок(*)</label>
                             <input type="text" class="form-control" formControlName="title">
+                            <div class="alert alert-danger small" *ngIf="tempDoc.controls['title'].invalid &&
+                                                                tempDoc.controls['title'].touched"
+                            >
+                                Не указан заголовок документа.
+                            </div>
                         </div>
                     </div>
                 </div>
