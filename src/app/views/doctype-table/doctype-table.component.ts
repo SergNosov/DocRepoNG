@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Doctype} from "../../model/Doctype";
-import {DataHandlerService} from "../../service/data-handler.service";
+import {DataService} from "../../service/data.service";
 
 @Component({
   selector: 'app-doctype-table',
@@ -11,7 +11,7 @@ export class DoctypeTableComponent implements OnInit {
 
   private doctypes: Doctype[];
 
-  constructor(private dataHandler: DataHandlerService) { }
+  constructor(private dataHandler: DataService) { }
 
   ngOnInit() {
     this.dataHandler.doctypeBehaviorSubject.subscribe( newDoctypes => this.doctypes = newDoctypes);

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {RepoCategory} from "../../model/RepoCategory";
-import {DataHandlerService} from "../../service/data-handler.service";
+import {DataService} from "../../service/data.service";
 import {Router} from "@angular/router";
 
 @Component({
@@ -13,7 +13,7 @@ export class CategoriesComponent implements OnInit {
   private repoCategories: RepoCategory[];
   selectedCategory: RepoCategory;
 
-  constructor(private dataHandler: DataHandlerService, private router: Router){
+  constructor(private dataHandler: DataService, private router: Router){
   }
 
   ngOnInit() {

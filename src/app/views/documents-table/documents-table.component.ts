@@ -1,7 +1,9 @@
 import {Component, Inject, LOCALE_ID, OnInit} from '@angular/core';
-import {DataHandlerService} from "../../service/data-handler.service";
+import {DataService} from "../../service/data.service";
 import {Document} from "../../model/Document";
 import {formatDate} from "@angular/common";
+import {DocumentService} from "../../service/document.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-documents-table',
@@ -12,10 +14,12 @@ export class DocumentsTableComponent implements OnInit {
 
   private documents: Document[];
 
-  constructor(private dataHandler: DataHandlerService, @Inject(LOCALE_ID) private locale: string) { }
+  constructor(private documentService: DocumentService,
+              @Inject(LOCALE_ID) private locale: string,
+              private router: Router) { }
 
   ngOnInit() {
-    this.dataHandler.documentBehaviorSubject.subscribe(newDocs => this.documents = newDocs);
+    this.documentService.documentsBehaviorSubject.subscribe(newDocs => this.documents = newDocs);
   }
 
   deleteDocument(doc: Document) {
@@ -23,7 +27,13 @@ export class DocumentsTableComponent implements OnInit {
     const dateDoc = formatDate(doc.date, 'dd.MM.yyyy',this.locale);
 
     if(confirm("Удалить документ: "+doc.doctype.title+" № "+doc.num+" от "+ dateDoc)) {
-      this.dataHandler.deleteDocument(doc);
+      this.documentService.deleteDocument(doc);
     }
+  }
+
+  editDocument(doc: Document) {
+    console.log("editDocument from documents-table: "+doc);
+    this.documentService.setDocument(doc);
+    this.router.navigate(['/document']);
   }
 }

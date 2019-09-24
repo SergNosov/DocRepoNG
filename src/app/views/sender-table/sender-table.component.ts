@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Sender} from "../../model/Sender";
-import {DataHandlerService} from "../../service/data-handler.service";
+import {DataService} from "../../service/data.service";
 
 @Component({
   selector: 'app-sender-table',
@@ -11,7 +11,7 @@ export class SenderTableComponent implements OnInit {
 
   private senders: Sender[];
 
-  constructor(private dataHandler: DataHandlerService) { }
+  constructor(private dataHandler: DataService) { }
 
   ngOnInit() {
     this.dataHandler.senderBehaviorSubject.subscribe(newSenders => this.senders = newSenders);

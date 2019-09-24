@@ -31,9 +31,13 @@
             <td>{{doc.title}}</td>
             <td>{{doc.context}}</td>
             <td class="td-actions text-right">
-                <button type="button" rel="tooltip" title="Редактировать" class="btn btn-primary btn-link btn-sm" data-original-title="Edit Task">
+                <button type="button"
+                        rel="tooltip"
+                        title="Редактировать"
+                        class="btn btn-primary btn-link btn-sm"
+                        data-original-title="Edit Task"
+                        (click)= "editDocument(doc)">
                     <i class="material-icons">edit</i>
-                    <div class="ripple-container"></div>
                 </button>
                 <button type="button"
                         rel="tooltip"
