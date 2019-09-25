@@ -5,6 +5,7 @@ import {DataService} from "../../service/data.service";
 import {Sender} from "../../model/Sender";
 import {DocumentService} from "../../service/document.service";
 import {Document} from "../../model/Document";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-document-form',
@@ -12,7 +13,7 @@ import {Document} from "../../model/Document";
   styleUrls: ['./document-form.component.css']
 })
 export class DocumentFormComponent implements OnInit {
-   private tempDoc: Document;
+   private tempDoc: Document = null;
    private doctypes: Doctype[];
    private senders: Sender[];
 
@@ -20,7 +21,8 @@ export class DocumentFormComponent implements OnInit {
 
   constructor ( private fb: FormBuilder,
                 private dataHandler: DataService,
-                private documentService: DocumentService) { }
+                private documentService: DocumentService,
+                private router: Router) { }
 
   ngOnInit() {
       this.dataHandler.doctypeBehaviorSubject.subscribe( newDoctypes => this.doctypes = newDoctypes);
@@ -42,7 +44,7 @@ export class DocumentFormComponent implements OnInit {
           this.tempDocFormData.setValue({
               id: this.tempDoc.id,
               ndoc: this.tempDoc.num,
-              dateDoc: this.formatDate(this.tempDoc.date),
+              dateDoc: this.dateToString(this.tempDoc.date),
               docType: this.tempDoc.doctype,
               senders: this.tempDoc.senders,
               title: this.tempDoc.title,
@@ -53,13 +55,30 @@ export class DocumentFormComponent implements OnInit {
 
   onSubmit() {
     if (!this.tempDocFormData.invalid) {
-        console.log(this.tempDocFormData.value);
+        const newDoc:Document = new Document(this.tempDocFormData.get('id').value,
+                                                new Date(this.tempDocFormData.get('dateDoc').value),
+                                                this.tempDocFormData.get('title').value,
+                                                this.tempDocFormData.get('docType').value,
+                                                this.tempDocFormData.get('senders').value,
+                                                this.tempDocFormData.get('ndoc').value,
+                                                this.tempDocFormData.get('context').value);
+        if (this.tempDoc !=null) {
+            console.log(this.documentService.isEquals(this.tempDoc,newDoc));
+            if(!this.documentService.isEquals(this.tempDoc,newDoc)){
+                if(confirm("Сохранить изменения в документе c id="+this.tempDoc.id)) {
+                    this.documentService.updateDocument(newDoc);
+                }
+            }
+        } else {
+            // сохранение нового документа в базу
+        }
+        this.router.navigate(['/documents']);
     } else {
         alert("не заполненны обязательные поля(*)");
     }
   }
 
-  private formatDate(date) {
+  private dateToString(date): string {
     const d = new Date(date);
     let month = '' + (d.getMonth() + 1);
     let day = '' + d.getDate();

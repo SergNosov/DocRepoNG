@@ -32,7 +32,6 @@ export class DocumentsTableComponent implements OnInit {
   }
 
   editDocument(doc: Document) {
-    console.log("editDocument from documents-table: "+doc);
     this.documentService.setDocument(doc);
     this.router.navigate(['/document']);
   }
