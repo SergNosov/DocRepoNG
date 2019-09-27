@@ -34,8 +34,8 @@ export class DocumentsTableComponent implements OnInit {
     this.router.navigate(['/document']);
   }
 
-    newDocument() {
-      this.documentService.setEntityBehaviorSubject(null);
-      this.router.navigate(['/document']);
-    }
+   newDocument() {
+     this.documentService.setEntityBehaviorSubject(null);
+     this.router.navigate(['/document']);
+   }
 }

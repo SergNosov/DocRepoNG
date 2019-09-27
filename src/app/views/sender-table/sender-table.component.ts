@@ -23,6 +23,8 @@ export class SenderTableComponent implements OnInit {
   }
 
   deleteSender(sender: Sender) {
-
+    if(confirm("Удалить отправителя: id="+sender.id+"; "+sender.title+"?")) {
+      this.senderService.delete(sender);
+    }
   }
 }
