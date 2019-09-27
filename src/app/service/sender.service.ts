@@ -1,21 +1,19 @@
-import { Injectable} from '@angular/core';
-import {TestData} from '../data/TestData';
-import {BehaviorSubject} from 'rxjs';
-import {Document} from "../model/Document";
 import {BaseService} from "./base.service";
+import {Sender} from "../model/Sender";
 import {Doctype} from "../model/Doctype";
-
+import {Injectable} from "@angular/core";
+import {TestData} from "../data/TestData";
 
 @Injectable({
     providedIn: 'root'
 })
-export class DocumentService extends BaseService<Document>{
+export class SenderService extends BaseService<Sender>{
 
     constructor(){
-        super(TestData.documents);
+        super(TestData.senders);
     }
 
-    isEquals(x: Document, y: Document): boolean {
+    isEquals(x: Sender, y: Sender): boolean {
         if (x === y) {
             return true; // if both x and y are null or undefined and exactly the same
         } else if (!(x instanceof Object) || !(y instanceof Object)) {
@@ -51,16 +49,12 @@ export class DocumentService extends BaseService<Document>{
         }
     }
 
-    update(newDoc: Document) {
-        this.entitys.forEach(function (doc :Document) {
-            if (newDoc.id == doc.id){
-                doc.num = newDoc.num;
-                doc.date = newDoc.date;
-                doc.context = newDoc.context;
-                doc.title = newDoc.title;
-                doc.doctype = newDoc.doctype;
-                doc.senders = newDoc.senders;
+    update(t: Sender) {
+        this.entitys.forEach(function (sender :Sender) {
+            if (t.id == sender.id){
+                sender.title = t.title;
             }
         });
     }
+
 }

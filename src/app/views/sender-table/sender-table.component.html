@@ -16,11 +16,19 @@
                 <td>{{sender.id}}</td>
                 <td>{{sender.title}}</td>
                 <td class="td-actions text-right">
-                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-link btn-sm" data-original-title="Edit Task">
+                    <button type="button"
+                            title="Редактировать"
+                            class="btn btn-primary btn-link btn-sm"
+                            (click)="editSender(sender)"
+                    >
                         <i class="material-icons">edit</i>
                         <div class="ripple-container"></div>
                     </button>
-                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-link btn-sm" data-original-title="Remove">
+                    <button type="button"
+                            title="Удалить"
+                            class="btn btn-danger btn-link btn-sm"
+                            (click)="deleteSender(sender)"
+                    >
                         <i class="material-icons">close</i>
                     </button>
                 </td>

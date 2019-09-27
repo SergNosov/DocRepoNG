@@ -9,6 +9,7 @@ import { DoctypeTableComponent } from './views/doctype-table/doctype-table.compo
 import { DocumentFormComponent } from './views/document-form/document-form.component';
 import {StyleLabelInputDirective} from "./directives/styleLabelInput.directive";
 import {ReactiveFormsModule} from "@angular/forms";
+import { DoctypeFormComponent } from './views/doctype-form/doctype-form.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {ReactiveFormsModule} from "@angular/forms";
     SenderTableComponent,
     DoctypeTableComponent,
     DocumentFormComponent,
-    StyleLabelInputDirective
+    StyleLabelInputDirective,
+    DoctypeFormComponent
   ],
   imports: [
     BrowserModule,

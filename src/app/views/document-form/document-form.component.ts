@@ -6,6 +6,8 @@ import {Sender} from "../../model/Sender";
 import {DocumentService} from "../../service/document.service";
 import {Document} from "../../model/Document";
 import {Router} from "@angular/router";
+import {DoctypeService} from "../../service/doctype.service";
+import {SenderService} from "../../service/sender.service";
 
 @Component({
   selector: 'app-document-form',
@@ -13,21 +15,21 @@ import {Router} from "@angular/router";
   styleUrls: ['./document-form.component.css']
 })
 export class DocumentFormComponent implements OnInit {
-   private tempDoc: Document = null;
-   private doctypes: Doctype[];
-   private senders: Sender[];
-
-   private tempDocFormData:  FormGroup;
+  private tempDoc: Document = null;
+  private doctypes: Doctype[];
+  private senders: Sender[];
+  private tempDocFormData:  FormGroup;
 
   constructor ( private fb: FormBuilder,
-                private dataHandler: DataService,
+                private doctypeService: DoctypeService,
+                private senderService: SenderService,
                 private documentService: DocumentService,
                 private router: Router) { }
 
   ngOnInit() {
-      this.dataHandler.doctypeBehaviorSubject.subscribe( newDoctypes => this.doctypes = newDoctypes);
-      this.dataHandler.senderBehaviorSubject.subscribe(newSenders => this.senders = newSenders);
-      this.documentService.documentBehaviorSubject.subscribe( doc => this.tempDoc = doc);
+      this.doctypeService.entitysBehaviorSubject.subscribe( newDoctypes => this.doctypes = newDoctypes);
+      this.senderService.entitysBehaviorSubject.subscribe(newSenders => this.senders = newSenders);
+      this.documentService.entityBehaviorSubject.subscribe( doc => this.tempDoc = doc);
 
       this.tempDocFormData = this.fb.group({
           id: [''],
@@ -40,7 +42,6 @@ export class DocumentFormComponent implements OnInit {
       });
 
       if (this.tempDoc !=null) {
-
           this.tempDocFormData.setValue({
               id: this.tempDoc.id,
               ndoc: this.tempDoc.num,
@@ -63,14 +64,15 @@ export class DocumentFormComponent implements OnInit {
                                                 this.tempDocFormData.get('ndoc').value,
                                                 this.tempDocFormData.get('context').value);
         if (this.tempDoc !=null) {
-            console.log(this.documentService.isEquals(this.tempDoc,newDoc));
             if(!this.documentService.isEquals(this.tempDoc,newDoc)){
                 if(confirm("Сохранить изменения в документе c id="+this.tempDoc.id)) {
-                    this.documentService.updateDocument(newDoc);
+                    this.documentService.update(newDoc);
                 }
             }
         } else {
-            // сохранение нового документа в базу
+            if(confirm("Сохранить новый документ: "+newDoc.title+" № "+newDoc.num + " от "+newDoc.date+ "?")) {
+                this.documentService.save(newDoc);
+            }
         }
         this.router.navigate(['/documents']);
     } else {

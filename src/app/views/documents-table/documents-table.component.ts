@@ -19,20 +19,23 @@ export class DocumentsTableComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    this.documentService.documentsBehaviorSubject.subscribe(newDocs => this.documents = newDocs);
+    this.documentService.entitysBehaviorSubject.subscribe(newDocs => this.documents = newDocs);
   }
 
   deleteDocument(doc: Document) {
-
     const dateDoc = formatDate(doc.date, 'dd.MM.yyyy',this.locale);
-
     if(confirm("Удалить документ: "+doc.doctype.title+" № "+doc.num+" от "+ dateDoc)) {
-      this.documentService.deleteDocument(doc);
+      this.documentService.delete(doc);
     }
   }
 
   editDocument(doc: Document) {
-    this.documentService.setDocument(doc);
+    this.documentService.setEntityBehaviorSubject(doc);
     this.router.navigate(['/document']);
   }
+
+    newDocument() {
+      this.documentService.setEntityBehaviorSubject(null);
+      this.router.navigate(['/document']);
+    }
 }

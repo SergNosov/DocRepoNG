@@ -1,6 +1,19 @@
 <div class="card">
     <div class="card-header card-header-warning">
-        <h4 class="card-title">Справочник типов документов</h4>
+        <div class = "container">
+            <div class ="con1">
+                <h4 class="card-title">Справочник типов документов</h4>
+            </div>
+            <div class ="con2">
+                <button type="button"
+                        title="Новый"
+                        class="btn  btn-outline-primary btn-sm "
+                        (click)= "newDoctype()"
+                >
+                    <i class="material-icons">playlist_add</i>
+                </button>
+            </div>
+        </div>
     </div>
     <div class="card-body table-responsive">
         <table class="table table-hover">
@@ -16,11 +29,18 @@
                 <td>{{doctype.id}}</td>
                 <td>{{doctype.title}}</td>
                 <td class="td-actions text-right">
-                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-link btn-sm" data-original-title="Edit Task">
+                    <button type="button"
+                            title="Редактировать"
+                            class="btn btn-primary btn-link btn-sm"
+                            (click)="editDoctype(doctype)"
+                    >
                         <i class="material-icons">edit</i>
-                        <div class="ripple-container"></div>
                     </button>
-                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-link btn-sm" data-original-title="Remove">
+                    <button type="button"
+                            title="Удалить"
+                            class="btn btn-danger btn-link btn-sm"
+                            (click)="deleteDoctype(doctype)"
+                    >
                         <i class="material-icons">close</i>
                     </button>
                 </td>

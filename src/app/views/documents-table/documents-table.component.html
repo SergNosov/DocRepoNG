@@ -6,10 +6,9 @@
          </div>
         <div class ="con2">
             <button type="button"
-                    rel="tooltip"
                     title="Новый"
-                    class="btn btn-primary btn-link"
-                    data-original-title="Edit Task"
+                    class="btn  btn-outline-primary btn-sm "
+                    (click)= "newDocument()"
                     >
                 <i class="material-icons">playlist_add</i>
             </button>
@@ -46,18 +45,14 @@
             <td>{{doc.context}}</td>
             <td class="td-actions text-right">
                 <button type="button"
-                        rel="tooltip"
                         title="Редактировать"
                         class="btn btn-primary btn-link btn-sm"
-                        data-original-title="Edit Task"
                         (click)= "editDocument(doc)">
                     <i class="material-icons">edit</i>
                 </button>
                 <button type="button"
-                        rel="tooltip"
                         title="Удалить"
                         class="btn btn-danger btn-link btn-sm"
-                        data-original-title="Remove"
                         (click) = "deleteDocument(doc)">
                     <i class="material-icons">close</i>
                 </button>

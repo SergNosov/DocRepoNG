@@ -1,21 +1,19 @@
-import { Injectable} from '@angular/core';
-import {TestData} from '../data/TestData';
-import {BehaviorSubject} from 'rxjs';
-import {Document} from "../model/Document";
-import {BaseService} from "./base.service";
+import {Injectable} from "@angular/core";
 import {Doctype} from "../model/Doctype";
-
+import {BehaviorSubject} from "rxjs";
+import {TestData} from "../data/TestData";
+import {BaseService} from "./base.service";
 
 @Injectable({
     providedIn: 'root'
 })
-export class DocumentService extends BaseService<Document>{
+export class DoctypeService extends BaseService<Doctype>{
 
     constructor(){
-        super(TestData.documents);
+        super(TestData.doctypes);
     }
 
-    isEquals(x: Document, y: Document): boolean {
+    isEquals(x: Doctype, y: Doctype): boolean {
         if (x === y) {
             return true; // if both x and y are null or undefined and exactly the same
         } else if (!(x instanceof Object) || !(y instanceof Object)) {
@@ -51,16 +49,12 @@ export class DocumentService extends BaseService<Document>{
         }
     }
 
-    update(newDoc: Document) {
-        this.entitys.forEach(function (doc :Document) {
-            if (newDoc.id == doc.id){
-                doc.num = newDoc.num;
-                doc.date = newDoc.date;
-                doc.context = newDoc.context;
-                doc.title = newDoc.title;
-                doc.doctype = newDoc.doctype;
-                doc.senders = newDoc.senders;
+    update(newDoctype: Doctype) {
+        this.entitys.forEach(function (doctype :Doctype) {
+            if (newDoctype.id == doctype.id){
+                doctype.title = newDoctype.title;
             }
         });
     }
 }
+
