@@ -1,6 +1,19 @@
 <div class="card">
     <div class="card-header card-header-warning">
-        <h4 class="card-title">Справочник отправителей</h4>
+        <div class = "container">
+            <div class ="con1">
+                <h4 class="card-title">Справочник отправителей</h4>
+            </div>
+            <div class ="con2">
+                <button type="button"
+                        title="Новый"
+                        class="btn  btn-outline-primary btn-sm "
+                        (click)= "newSender()"
+                >
+                    <i class="material-icons">playlist_add</i>
+                </button>
+            </div>
+        </div>
     </div>
     <div class="card-body table-responsive">
         <table class="table table-hover">
