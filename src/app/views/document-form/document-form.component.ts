@@ -19,6 +19,9 @@ export class DocumentFormComponent implements OnInit {
   private doctypes: Doctype[];
   private senders: Sender[];
   private tempDocFormData:  FormGroup;
+  private forBarCode:String;
+  elementType : 'url' | 'canvas' | 'img' = 'url';
+  value : string = 'Techiediaries';
 
   constructor ( private fb: FormBuilder,
                 private doctypeService: DoctypeService,
@@ -51,6 +54,7 @@ export class DocumentFormComponent implements OnInit {
               title: this.tempDoc.title,
               context: this.tempDoc.context
           });
+          this.forBarCode = this.tempDoc.toString();
       }
   }
 
@@ -80,6 +84,9 @@ export class DocumentFormComponent implements OnInit {
     }
   }
 
+  get BarcodValue(){
+      return   this.tempDoc.id;
+  }
   private dateToString(date): string {
     const d = new Date(date);
     let month = '' + (d.getMonth() + 1);

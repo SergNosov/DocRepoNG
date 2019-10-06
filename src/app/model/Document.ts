@@ -75,4 +75,12 @@ export class Document {
   set context(value: string) {
     this._context = value;
   }
+
+  toString(): string {
+    return this.id + " " +
+        this.num + " "+
+        this.date + " "+
+        this.title + " "+
+        this.doctype + " "
+  }
 }

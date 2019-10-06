@@ -11,7 +11,8 @@ import {StyleLabelInputDirective} from "./directives/styleLabelInput.directive";
 import {ReactiveFormsModule} from "@angular/forms";
 import { DoctypeFormComponent } from './views/doctype-form/doctype-form.component';
 import { SenderFormComponent } from './views/sender-form/sender-form.component';
-
+import { NgxBarcodeModule } from 'ngx-barcode';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,9 @@ import { SenderFormComponent } from './views/sender-form/sender-form.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxBarcodeModule,
+    NgxQRCodeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

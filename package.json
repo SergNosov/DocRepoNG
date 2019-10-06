@@ -19,6 +19,10 @@
     "@angular/platform-browser": "~8.2.5",
     "@angular/platform-browser-dynamic": "~8.2.5",
     "@angular/router": "~8.2.5",
+    "angular-barcode-example": "0.0.1",
+    "angularx-qrcode": "^1.6.4",
+    "ngx-barcode": "^0.2.4",
+    "ngx-qrcode2": "0.0.9",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"

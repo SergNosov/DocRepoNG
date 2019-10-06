@@ -88,5 +88,9 @@
             </form>
         </div>
     </div>
+    <div class="barcode" *ngIf="tempDoc != null">
+        <ngx-barcode [bc-value]= "BarcodValue" [bc-display-value]="true"></ngx-barcode>
+        <ngx-qrcode [qrc-element-type]="elementType" [qrc-value] = "forBarCode"></ngx-qrcode>
+    </div>
 </div>
 
