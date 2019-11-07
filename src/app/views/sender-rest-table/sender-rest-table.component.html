@@ -1,0 +1,53 @@
+<p>sender-rest-table works!</p>
+<div class="card">
+    <div class="card-header card-header-warning">
+        <div class = "container">
+            <div class ="con1">
+                <h4 class="card-title">Справочник отправителей</h4>
+            </div>
+            <div class ="con2">
+                <button type="button"
+                        title="Новый"
+                        class="btn  btn-outline-primary btn-sm "
+                        (click)= "newSender()"
+                >
+                    <i class="material-icons">playlist_add</i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="card-body table-responsive">
+        <table class="table table-hover">
+            <thead class="text-warning">
+            <th>#</th>
+            <th>Id</th>
+            <th>Отправитель</th>
+            <th>Действие</th>
+            </thead>
+            <tbody>
+            <tr *ngFor="let sender of senders; let i = index" >
+                <td>{{i + 1}}</td>
+                <td>{{sender.id}}</td>
+                <td>{{sender.title}}</td>
+                <td class="td-actions text-right">
+                    <button type="button"
+                            title="Редактировать"
+                            class="btn btn-primary btn-link btn-sm"
+                            (click)="editSender(sender)"
+                    >
+                        <i class="material-icons">edit</i>
+                        <div class="ripple-container"></div>
+                    </button>
+                    <button type="button"
+                            title="Удалить"
+                            class="btn btn-danger btn-link btn-sm"
+                            (click)="deleteSender(sender)"
+                    >
+                        <i class="material-icons">close</i>
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

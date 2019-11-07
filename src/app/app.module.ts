@@ -13,6 +13,8 @@ import { DoctypeFormComponent } from './views/doctype-form/doctype-form.componen
 import { SenderFormComponent } from './views/sender-form/sender-form.component';
 import { NgxBarcodeModule } from 'ngx-barcode';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { SenderRestTableComponent } from './views/sender-rest-table/sender-rest-table.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -24,14 +26,16 @@ import { NgxQRCodeModule } from 'ngx-qrcode2';
     DocumentFormComponent,
     StyleLabelInputDirective,
     DoctypeFormComponent,
-    SenderFormComponent
+    SenderFormComponent,
+    SenderRestTableComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     NgxBarcodeModule,
-    NgxQRCodeModule
+    NgxQRCodeModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
