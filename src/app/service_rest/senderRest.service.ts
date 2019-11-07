@@ -3,7 +3,7 @@ import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Sender} from "../model/Sender";
 import {Observable} from "rxjs";
-import 'rxjs/add/operator/map';
+import {CommonMessage} from "../model/common-message";
 
 @Injectable({
     providedIn: 'root'
@@ -23,8 +23,8 @@ export class SenderServiceRest {
         return this.http.get<Sender[]>(this.senderURL);
     }
 
-    public delete(sender: Sender) {
-        return this.http.delete(this.senderURL+'/'+sender.id);
+    public delete(sender: Sender): Observable<CommonMessage> {
+        return this.http.delete<CommonMessage>(this.senderURL+'/'+sender.id);
     }
 
     private extractData(res: Response) {

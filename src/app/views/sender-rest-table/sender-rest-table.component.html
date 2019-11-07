@@ -25,7 +25,7 @@
             <th>Действие</th>
             </thead>
             <tbody>
-            <tr *ngFor="let sender of senders; let i = index" >
+            <tr *ngFor="let sender of senders|async; let i = index" >
                 <td>{{i + 1}}</td>
                 <td>{{sender.id}}</td>
                 <td>{{sender.title}}</td>

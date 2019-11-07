@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Sender} from "../../model/Sender";
 import {SenderServiceRest} from "../../service_rest/senderRest.service";
 import {CommonMessage} from "../../model/common-message";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-sender-rest-table',
@@ -10,14 +11,17 @@ import {CommonMessage} from "../../model/common-message";
 })
 export class SenderRestTableComponent implements OnInit {
 
-  private senders: Sender[];
-  private commonMessage: CommonMessage[];
+  private senders: Observable<Sender[]>;
+  private commonMessage: Observable<CommonMessage>;
 
   constructor(private senderServiceRest: SenderServiceRest) { }
 
   ngOnInit() {
+    this.reloadData();
+    /*
     this.senderServiceRest.getAllSenders()
         .subscribe(data => {this.senders = data})
+     */
   }
 
   public newSender() {
@@ -29,9 +33,14 @@ export class SenderRestTableComponent implements OnInit {
   public deleteSender(sender: Sender) {
     if(confirm("Удалить отправителя: id="+sender.id+"; "+sender.title+"?")) {
       this.senderServiceRest.delete(sender).subscribe(data => {
-        this.senders.filter(s => s !== sender);
+       console.log(data.valueOf());
+       this.reloadData();
+       alert(data.message);
       });
     }
   }
 
+  private reloadData(){
+    this.senders = this.senderServiceRest.getAllSenders();
+  }
 }
