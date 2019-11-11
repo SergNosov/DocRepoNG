@@ -1,43 +1,54 @@
 <p>sender-rest-table works!</p>
 <div class="card">
     <div class="card-header card-header-warning">
-        <div class = "container">
-            <div class ="con1">
+        <div class="container">
+            <div class="con1">
                 <h4 class="card-title">Справочник отправителей</h4>
             </div>
-            <div class ="con2">
+            <div class="con2">
                 <button type="button"
                         title="Новый"
                         class="btn  btn-outline-primary btn-sm "
-                        (click)= "newSender()"
-                >
+                        (click)="newSender()">
                     <i class="material-icons">playlist_add</i>
                 </button>
             </div>
         </div>
     </div>
-    <div class="card-body table-responsive">
-        <table class="table table-hover">
-            <thead class="text-warning">
-            <th>#</th>
-            <th>Id</th>
-            <th>Отправитель</th>
-            <th>Действие</th>
-            </thead>
-            <tbody>
-            <tr *ngFor="let sender of senders|async; let i = index" >
-                <td>{{i + 1}}</td>
-                <td>{{sender.id}}</td>
-                <td>{{sender.title}}</td>
-                <td class="td-actions text-right">
+    <div class="example-container mat-elevation-z8">
+        <table mat-table [dataSource]="dataSourse">
+            <ng-container matColumnDef="num">
+                <th *matHeaderCellDef mat-header-cell>№</th>
+                <td *matCellDef="let index = index;" mat-cell>
+                    {{index + 1}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="id">
+                <th *matHeaderCellDef mat-header-cell>id</th>
+                <td *matCellDef="let sender" mat-cell>
+                    {{sender.id}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="title">
+                <th *matHeaderCellDef mat-header-cell>Отправитель</th>
+                <td *matCellDef="let sender" mat-cell>
+                    {{sender.title}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="action">
+                <th *matHeaderCellDef mat-header-cell>Действие</th>
+                <td *matCellDef="let sender" mat-cell>
                     <button type="button"
                             title="Редактировать"
                             class="btn btn-primary btn-link btn-sm"
-                            (click)="editSender(sender)"
-                    >
+                            (click)="editSender(sender)">
                         <i class="material-icons">edit</i>
                         <div class="ripple-container"></div>
                     </button>
+
                     <button type="button"
                             title="Удалить"
                             class="btn btn-danger btn-link btn-sm"
@@ -46,8 +57,48 @@
                         <i class="material-icons">close</i>
                     </button>
                 </td>
-            </tr>
-            </tbody>
+
+            </ng-container>
+
+            <tr *matHeaderRowDef="displayedColumns; sticky: true" mat-header-row></tr>
+            <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+
         </table>
     </div>
-</div>
+    <!--
+        <div class="card-body table-responsive">
+            <table class="table table-hover">
+                <thead class="text-warning">
+                <th>#</th>
+                <th>Id</th>
+                <th>Отправитель</th>
+                <th>Действие</th>
+                </thead>
+                <tbody>
+                <tr *ngFor="let sender of senders|async; let i = index" >
+                    <td>{{i + 1}}</td>
+                    <td>{{sender.id}}</td>
+                    <td>{{sender.title}}</td>
+                    <td class="td-actions text-right">
+                        <button type="button"
+                                title="Редактировать"
+                                class="btn btn-primary btn-link btn-sm"
+                                (click)="editSender(sender)"
+                        >
+                            <i class="material-icons">edit</i>
+                            <div class="ripple-container"></div>
+                        </button>
+                        <button type="button"
+                                title="Удалить"
+                                class="btn btn-danger btn-link btn-sm"
+                                (click)="deleteSender(sender)"
+                        >
+                            <i class="material-icons">close</i>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    -->
