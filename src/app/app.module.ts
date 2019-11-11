@@ -19,6 +19,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatSortModule} from "@angular/material/sort";
+import { SenderRestFormComponent } from './views/sender-rest-form/sender-rest-form.component';
 
 @NgModule({
     declarations: [
@@ -31,7 +32,8 @@ import {MatSortModule} from "@angular/material/sort";
         StyleLabelInputDirective,
         DoctypeFormComponent,
         SenderFormComponent,
-        SenderRestTableComponent
+        SenderRestTableComponent,
+        SenderRestFormComponent
     ],
     imports: [
         BrowserModule,

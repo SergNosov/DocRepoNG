@@ -4,6 +4,7 @@ import {SenderServiceRest} from "../../service_rest/senderRest.service";
 import {CommonMessage} from "../../model/common-message";
 import {Observable} from "rxjs";
 import {MatTableDataSource} from "@angular/material/table";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-sender-rest-table',
@@ -12,24 +13,20 @@ import {MatTableDataSource} from "@angular/material/table";
 })
 export class SenderRestTableComponent implements OnInit {
 
-    private senders: Observable<Sender[]>;
-    private commonMessage: Observable<CommonMessage>;
     private displayedColumns: string[] = ['num','id','title','action'];
     private dataSourse: MatTableDataSource<Sender>;
 
-    constructor(private senderServiceRest: SenderServiceRest) {
+    constructor(private senderServiceRest: SenderServiceRest,
+                private router: Router) {
     }
 
     ngOnInit() {
         this.reloadData();
         this.dataSourse = new MatTableDataSource();
-        /*
-        this.senderServiceRest.getAllSenders()
-            .subscribe(data => {this.senders = data})
-         */
     }
 
     public newSender() {
+        this.router.navigate(['/senderRest']);
     }
 
     public editSender(sender: Sender) {
@@ -51,8 +48,6 @@ export class SenderRestTableComponent implements OnInit {
     }
 
     private reloadData() {
-        this.senders = this.senderServiceRest.getAllSenders();
-
          this.senderServiceRest.getAllSenders()
              .subscribe(data => {this.dataSourse.data = data})
     }

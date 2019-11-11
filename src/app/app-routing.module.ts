@@ -7,6 +7,7 @@ import {DocumentFormComponent} from "./views/document-form/document-form.compone
 import {DoctypeFormComponent} from "./views/doctype-form/doctype-form.component";
 import {SenderFormComponent} from "./views/sender-form/sender-form.component";
 import {SenderRestTableComponent} from "./views/sender-rest-table/sender-rest-table.component";
+import {SenderRestFormComponent} from "./views/sender-rest-form/sender-rest-form.component";
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'senders', component: SenderTableComponent},
   { path: 'sendersRest', component: SenderRestTableComponent},
   { path: 'sender', component: SenderFormComponent},
+  { path: 'senderRest', component: SenderRestFormComponent},
   { path: 'doctypes', component: DoctypeTableComponent},
   { path: 'doctype', component: DoctypeFormComponent},
 ];
