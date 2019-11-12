@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'senders', component: SenderTableComponent},
   { path: 'sendersRest', component: SenderRestTableComponent},
   { path: 'sender', component: SenderFormComponent},
-  { path: 'senderRest', component: SenderRestFormComponent},
+  { path: 'senderRest/:id', component: SenderRestFormComponent},
   { path: 'doctypes', component: DoctypeTableComponent},
   { path: 'doctype', component: DoctypeFormComponent},
 ];

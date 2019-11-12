@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Sender} from "../../model/Sender";
 import {SenderServiceRest} from "../../service_rest/senderRest.service";
-import {CommonMessage} from "../../model/common-message";
+import {CommonMessage} from "../../model/Common-message";
 import {Observable} from "rxjs";
 import {MatTableDataSource} from "@angular/material/table";
 import {Router} from "@angular/router";
@@ -26,10 +26,11 @@ export class SenderRestTableComponent implements OnInit {
     }
 
     public newSender() {
-        this.router.navigate(['/senderRest']);
+        this.router.navigate(['/senderRest/0']);
     }
 
     public editSender(sender: Sender) {
+        this.router.navigate(['/senderRest/'+sender.id]);
     }
 
     public deleteSender(sender: Sender) {
@@ -48,6 +49,7 @@ export class SenderRestTableComponent implements OnInit {
     }
 
     private reloadData() {
+        console.log('ReloadData()');
          this.senderServiceRest.getAllSenders()
              .subscribe(data => {this.dataSourse.data = data})
     }
