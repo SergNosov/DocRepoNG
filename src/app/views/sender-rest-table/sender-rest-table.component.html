@@ -16,23 +16,24 @@
         </div>
     </div>
     <div class="example-container mat-elevation-z8">
-        <table mat-table [dataSource]="dataSourse">
+        <table mat-table [dataSource]="dataSource" matSort>
+            <!--
             <ng-container matColumnDef="num">
                 <th *matHeaderCellDef mat-header-cell>№</th>
                 <td *matCellDef="let index = index;" mat-cell>
                     {{index + 1}}
                 </td>
             </ng-container>
-
+            -->
             <ng-container matColumnDef="id">
-                <th *matHeaderCellDef mat-header-cell>id</th>
+                <th *matHeaderCellDef mat-header-cell mat-sort-header>id</th>
                 <td *matCellDef="let sender" mat-cell>
                     {{sender.id}}
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="title">
-                <th *matHeaderCellDef mat-header-cell>Отправитель</th>
+                <th *matHeaderCellDef mat-header-cell mat-sort-header>Отправитель</th>
                 <td *matCellDef="let sender" mat-cell>
                     {{sender.title}}
                 </td>
@@ -57,12 +58,10 @@
                         <i class="material-icons">close</i>
                     </button>
                 </td>
-
             </ng-container>
-
             <tr *matHeaderRowDef="displayedColumns; sticky: true" mat-header-row></tr>
             <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
-
         </table>
+        <mat-paginator [pageSizeOptions]="[5, 10]" showFirstLastButtons></mat-paginator>
     </div>
 </div>

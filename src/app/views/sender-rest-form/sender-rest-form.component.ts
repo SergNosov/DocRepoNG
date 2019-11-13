@@ -3,6 +3,7 @@ import {Sender} from "../../model/Sender";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {SenderServiceRest} from "../../service_rest/senderRest.service";
+import {SenderServiceImpl} from "../../service_rest/impl/SenderServiceImpl";
 
 @Component({
     selector: 'app-sender-rest-form',
@@ -15,7 +16,7 @@ export class SenderRestFormComponent implements OnInit {
     private tempSenderFormData: FormGroup;
 
     constructor(private fb: FormBuilder,
-                private senderServiceRest: SenderServiceRest,
+                private senderService: SenderServiceImpl,
                 private router: Router,
                 private activateRoute: ActivatedRoute) {
     }
@@ -28,7 +29,7 @@ export class SenderRestFormComponent implements OnInit {
         const id = this.activateRoute.snapshot.params['id'];
 
         if (id != 0) {
-            this.senderServiceRest.getById(id).subscribe(
+            this.senderService.getById(id).subscribe(
                 data => {
                     this.tempSender = new Sender(data.id, data.title);
                     this.tempSenderFormData.setValue({
@@ -38,7 +39,7 @@ export class SenderRestFormComponent implements OnInit {
                     console.log(error.valueOf());
                     alert("не найден отправитель: id = " + id + "\n" + error.message);
                     this.router.navigate(['/sendersRest']);
-                    //todo отработать вариант с переадресацией
+                    //todo сообщение об ошибках сделать в отдельном компоненте
                 });
         }
     }
@@ -48,7 +49,7 @@ export class SenderRestFormComponent implements OnInit {
             const newSender: Sender = new Sender(this.tempSender.id,
                 this.tempSenderFormData.get('title').value);
             if (this.tempSender.id != 0) {
-                if (!this.senderServiceRest.isEquals(this.tempSender, newSender)) {
+                if (!this.senderService.isEquals(this.tempSender, newSender)) {
                     if (confirm("Сохранить изменения в свойствах отправителя c id=" + this.tempSender.id)) {
                        this.saveOrUpdate(newSender);
                     }
@@ -65,7 +66,7 @@ export class SenderRestFormComponent implements OnInit {
     }
 
     private saveOrUpdate(newSender: Sender):void{
-        this.senderServiceRest.saveOrUpdate(newSender).subscribe(
+        this.senderService.saveOrUpdate(newSender).subscribe(
             data => {
             },
             error => {

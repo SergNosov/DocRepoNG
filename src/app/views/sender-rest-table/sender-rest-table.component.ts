@@ -1,28 +1,40 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {Sender} from "../../model/Sender";
 import {SenderServiceRest} from "../../service_rest/senderRest.service";
-import {CommonMessage} from "../../model/Common-message";
-import {Observable} from "rxjs";
 import {MatTableDataSource} from "@angular/material/table";
 import {Router} from "@angular/router";
+import {MatSort} from "@angular/material/sort";
+import {MatPaginator} from "@angular/material/paginator";
+import {SenderServiceImpl} from "../../service_rest/impl/SenderServiceImpl";
+import {SenderService} from "../../service_rest/interface/SenderService";
 
 @Component({
     selector: 'app-sender-rest-table',
     templateUrl: './sender-rest-table.component.html',
     styleUrls: ['./sender-rest-table.component.css']
 })
-export class SenderRestTableComponent implements OnInit {
+export class SenderRestTableComponent implements OnInit, AfterViewInit {
 
-    private displayedColumns: string[] = ['num','id','title','action'];
-    private dataSourse: MatTableDataSource<Sender>;
+    private displayedColumns: string[] = ['id','title','action'];
+    private dataSource: MatTableDataSource<Sender>;
 
-    constructor(private senderServiceRest: SenderServiceRest,
+    @ViewChild(MatSort,{static:false})
+    private sort:MatSort;
+
+    @ViewChild(MatPaginator, {static: false})
+    private paginator: MatPaginator;
+
+    constructor(private senderService: SenderServiceImpl,
                 private router: Router) {
     }
 
     ngOnInit() {
+        this.dataSource = new MatTableDataSource();
         this.reloadData();
-        this.dataSourse = new MatTableDataSource();
+    }
+
+    ngAfterViewInit(): void {
+        this.addTableObjects();
     }
 
     public newSender() {
@@ -35,7 +47,7 @@ export class SenderRestTableComponent implements OnInit {
 
     public deleteSender(sender: Sender) {
         if (confirm("Удалить отправителя: id = " + sender.id + "; " + sender.title + "?")) {
-            this.senderServiceRest.delete(sender).subscribe(
+            this.senderService.delete(sender.id).subscribe(
                 data => {
                     console.log(data.valueOf());
                     this.reloadData();
@@ -50,13 +62,31 @@ export class SenderRestTableComponent implements OnInit {
 
     private reloadData() {
         console.log('ReloadData()');
-         this.senderServiceRest.getAllSenders()
+         this.senderService.getAll()
              .subscribe(data => {
-                 this.dataSourse.data = data;
+                 this.dataSource.data = data;
                  let senders:Sender[] = data;
                  senders.forEach((item,index)=>{
                      console.log("Sender № "+(index+1)+"; id = "+item.id+"; title = "+item.title);
                  })
-             })
+             });
+
+         this.addTableObjects();
+
+         this.dataSource.sortingDataAccessor = (sender, colname)=>{
+             switch(colname){
+                 case 'id': {
+                     return sender.id;
+                 }
+                 case 'title': {
+                     return sender.title;
+                 }
+             }
+         }
+    }
+
+    private addTableObjects(){
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
     }
 }
