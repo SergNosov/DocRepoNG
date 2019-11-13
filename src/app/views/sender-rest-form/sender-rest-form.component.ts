@@ -50,24 +50,29 @@ export class SenderRestFormComponent implements OnInit {
             if (this.tempSender.id != 0) {
                 if (!this.senderServiceRest.isEquals(this.tempSender, newSender)) {
                     if (confirm("Сохранить изменения в свойствах отправителя c id=" + this.tempSender.id)) {
-                        this.senderServiceRest.update(newSender).subscribe(
-                            data=>{},
-                            error => {
-                                alert("Ошибка при обновлении sender.id:"+newSender.id+"\n" + error.message);
-                                console.log(error.valueOf());
-                            }
-                        );
+                       this.saveOrUpdate(newSender);
                     }
                 }
             } else {
-                //insert
                 if (confirm("Сохранить отправителя: " + newSender.title + "?")) {
-                    //  this.senderService.save(newSender);
+                    this.saveOrUpdate(newSender);
                 }
             }
             this.router.navigate(['/sendersRest']);
         } else {
             alert("не заполненны обязательные поля(*)");
         }
+    }
+
+    private saveOrUpdate(newSender: Sender):void{
+        this.senderServiceRest.saveOrUpdate(newSender).subscribe(
+            data => {
+            },
+            error => {
+                alert("Ошибка при сохранении sender.id:" + newSender.id + "\n" + error.error.message);
+                console.log(error.valueOf());
+                //todo сообщение об ошибках сделать в отдельном компоненте
+            }
+        );
     }
 }

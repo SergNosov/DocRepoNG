@@ -1,4 +1,3 @@
-
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Sender} from "../model/Sender";
@@ -11,27 +10,20 @@ import {CommonMessage} from "../model/Common-message";
 export class SenderServiceRest {
     private senderURL = 'http://localhost:8080/api/senders';
 
-    constructor(private http:HttpClient) { }
+    constructor(private http: HttpClient) {
+    }
 
-    public getAllSenders() : Observable<Sender[]>{
+    public getAllSenders(): Observable<Sender[]> {
         console.log("getAllSenders");
         return this.http.get<Sender[]>(this.senderURL);
     }
 
-    public getById(id: number): Observable<Sender>{
-        return this.http.get<Sender>(this.senderURL+'/'+id);
+    public getById(id: number): Observable<Sender> {
+        return this.http.get<Sender>(this.senderURL + '/' + id);
     }
 
     public delete(sender: Sender): Observable<CommonMessage> {
-        return this.http.delete<CommonMessage>(this.senderURL+'/'+sender.id);
-    }
-
-    update(newSender: Sender): Observable<any> {
-        let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-        let options = { headers: headers };
-        newSender.id=-123;
-        const body ={id: newSender.id, title: newSender.title};
-        return this.http.put(this.senderURL, body, options);
+        return this.http.delete<CommonMessage>(this.senderURL + '/' + sender.id);
     }
 
     public isEquals(x: Sender, y: Sender): boolean {
@@ -67,6 +59,19 @@ export class SenderServiceRest {
                 }
             }
             return true;
+        }
+    }
+
+    saveOrUpdate(newSender: Sender): Observable<any> {
+        let headers = new HttpHeaders({'Content-Type': 'application/json'});
+        let options = {headers: headers};
+        const body = {id: newSender.id, title: newSender.title};
+        if (newSender.id == 0) {
+            console.log("saveOrUpdate newSenderId: " + newSender.id);
+            return this.http.post(this.senderURL, body, options);
+        } else {
+            console.log("saveOrUpdate SenderId: " + newSender.id);
+            return this.http.put(this.senderURL, body, options);
         }
     }
 }

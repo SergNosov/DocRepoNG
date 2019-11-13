@@ -51,6 +51,12 @@ export class SenderRestTableComponent implements OnInit {
     private reloadData() {
         console.log('ReloadData()');
          this.senderServiceRest.getAllSenders()
-             .subscribe(data => {this.dataSourse.data = data})
+             .subscribe(data => {
+                 this.dataSourse.data = data;
+                 let senders:Sender[] = data;
+                 senders.forEach((item,index)=>{
+                     console.log("Sender № "+(index+1)+"; id = "+item.id+"; title = "+item.title);
+                 })
+             })
     }
 }
