@@ -1,8 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {Sender} from "../../model/Sender";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
-import {SenderServiceRest} from "../../service_rest/senderRest.service";
 import {SenderServiceImpl} from "../../service_rest/impl/SenderServiceImpl";
 
 @Component({
@@ -51,7 +50,7 @@ export class SenderRestFormComponent implements OnInit {
             if (this.tempSender.id != 0) {
                 if (!this.senderService.isEquals(this.tempSender, newSender)) {
                     if (confirm("Сохранить изменения в свойствах отправителя c id=" + this.tempSender.id)) {
-                       this.saveOrUpdate(newSender);
+                        this.saveOrUpdate(newSender);
                     }
                 }
             } else {
@@ -65,7 +64,7 @@ export class SenderRestFormComponent implements OnInit {
         }
     }
 
-    private saveOrUpdate(newSender: Sender):void{
+    private saveOrUpdate(newSender: Sender): void {
         this.senderService.saveOrUpdate(newSender).subscribe(
             data => {
             },

@@ -38,6 +38,13 @@ export class SenderDaoImpl implements SenderDao {
         let headers = new HttpHeaders({'Content-Type': 'application/json'});
         let options = {headers: headers};
         const body = {id: sender.id, title: sender.title};
-        return this.http.put<Sender>(this.senderURL, body, options);
+        console.log("senderDao.update body:"+body.id+";"+ body.title);
+        let returnSender: Observable<Sender> = this.http.put<Sender>(this.senderURL, body, options);
+
+        returnSender.subscribe(data => {
+            let sender:Sender = data;
+            console.log("senderDao.update returnSender:"+sender.id+";"+ sender.title);
+        })
+        return returnSender;
     }
 }

@@ -8,7 +8,7 @@ import {SenderTableComponent} from './views/sender-table/sender-table.component'
 import {DoctypeTableComponent} from './views/doctype-table/doctype-table.component';
 import {DocumentFormComponent} from './views/document-form/document-form.component';
 import {StyleLabelInputDirective} from "./directives/styleLabelInput.directive";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {DoctypeFormComponent} from './views/doctype-form/doctype-form.component';
 import {SenderFormComponent} from './views/sender-form/sender-form.component';
 import {NgxBarcodeModule} from 'ngx-barcode';
@@ -20,6 +20,12 @@ import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatSortModule} from "@angular/material/sort";
 import { SenderRestFormComponent } from './views/sender-rest-form/sender-rest-form.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import { SenderEditDialogComponent } from './views/sender-edit-dialog/sender-edit-dialog.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatButtonModule} from "@angular/material/button";
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
     declarations: [
@@ -33,7 +39,8 @@ import { SenderRestFormComponent } from './views/sender-rest-form/sender-rest-fo
         DoctypeFormComponent,
         SenderFormComponent,
         SenderRestTableComponent,
-        SenderRestFormComponent
+        SenderRestFormComponent,
+        SenderEditDialogComponent
     ],
     imports: [
         BrowserModule,
@@ -45,9 +52,18 @@ import { SenderRestFormComponent } from './views/sender-rest-form/sender-rest-fo
         BrowserAnimationsModule,
         MatTableModule,
         MatPaginatorModule,
-        MatSortModule
+        MatSortModule,
+        MatDialogModule,
+        MatFormFieldModule,
+        FormsModule,
+        MatInputModule,
+        MatButtonModule,
+        MatIconModule
     ],
     providers: [],
+    entryComponents: [
+        SenderEditDialogComponent
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {
