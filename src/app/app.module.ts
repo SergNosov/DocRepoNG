@@ -26,6 +26,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
+import { ConfirmDialogComponent } from './views/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
     declarations: [
@@ -40,7 +41,8 @@ import {MatIconModule} from "@angular/material/icon";
         SenderFormComponent,
         SenderRestTableComponent,
         SenderRestFormComponent,
-        SenderEditDialogComponent
+        SenderEditDialogComponent,
+        ConfirmDialogComponent
     ],
     imports: [
         BrowserModule,
@@ -62,7 +64,8 @@ import {MatIconModule} from "@angular/material/icon";
     ],
     providers: [],
     entryComponents: [
-        SenderEditDialogComponent
+        SenderEditDialogComponent,
+        ConfirmDialogComponent
     ],
     bootstrap: [AppComponent]
 })
