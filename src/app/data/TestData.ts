@@ -47,10 +47,11 @@ export class TestData {
 
     static repoCategory: RepoCategory[] = [
         new RepoCategory(1, "Документы", "/documents"),
-        new RepoCategory(2, "Субъекты", "/senders"),
-        new RepoCategory(3, "Субъекты(Rest)", "/sendersRest"),
-        new RepoCategory(4, "Типы документов", "/doctypes"),
-        new RepoCategory(4, "Типы документов(Rest)", "/doctypesRest"),
+        new RepoCategory(2, "Документы(Rest)", "/documentsRest"),
+        new RepoCategory(3, "Субъекты", "/senders"),
+        new RepoCategory(4, "Субъекты(Rest)", "/sendersRest"),
+        new RepoCategory(5, "Типы документов", "/doctypes"),
+        new RepoCategory(6, "Типы документов(Rest)", "/doctypesRest"),
     ];
 }
 

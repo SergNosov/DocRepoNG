@@ -10,9 +10,11 @@ import {SenderRestTableComponent} from "./views/sender-rest-table/sender-rest-ta
 import {SenderRestFormComponent} from "./views/sender-rest-form/sender-rest-form.component";
 import {DoctypesRestTableComponent} from "./views/doctypes-rest-table/doctypes-rest-table.component";
 import {DoctypeRestFormComponent} from "./views/doctype-rest-form/doctype-rest-form.component";
+import {DocumentsRestTableComponent} from "./views/documents-rest-table/documents-rest-table.component";
 
 const routes: Routes = [
     {path: 'documents', component: DocumentsTableComponent},
+    {path: 'documentsRest', component: DocumentsRestTableComponent},
     {path: 'document', component: DocumentFormComponent},
     {path: 'senders', component: SenderTableComponent},
     {path: 'sendersRest', component: SenderRestTableComponent},

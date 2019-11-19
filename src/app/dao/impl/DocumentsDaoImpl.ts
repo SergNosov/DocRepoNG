@@ -22,12 +22,10 @@ export class DocumentsDaoImpl implements DocumentsDao {
 
     getAll(): Observable<Document[]> {
         return this.http.get<Document[]>(this.documentsURL);
-        ;
     }
 
     getById(id: number): Observable<Document> {
         return this.http.get<Document>(this.documentsURL + '/' + id);
-        ;
     }
 
     save(document: Document): Observable<Document> {
