@@ -2,13 +2,13 @@
     <div class="card-header card-header-warning">
         <div class="container">
             <div class="con1">
-                <h4 class="card-title">Справочник отправителей</h4>
+                <h4 class="card-title">Справочник типов документов</h4>
             </div>
             <div class="con2">
                 <button type="button"
                         title="Новый"
                         class="btn  btn-outline-primary btn-sm "
-                        (click)="newSender()">
+                        (click)="newDoctype()">
                     <i class="material-icons">playlist_add</i>
                 </button>
             </div>
@@ -18,33 +18,33 @@
         <table mat-table [dataSource]="dataSource" matSort>
             <ng-container matColumnDef="id">
                 <th *matHeaderCellDef mat-header-cell mat-sort-header>id</th>
-                <td *matCellDef="let sender" mat-cell>
-                    {{sender.id}}
+                <td *matCellDef="let doctype" mat-cell>
+                    {{doctype.id}}
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="title">
-                <th *matHeaderCellDef mat-header-cell mat-sort-header>Отправитель</th>
-                <td *matCellDef="let sender" mat-cell>
-                    {{sender.title}}
+                <th *matHeaderCellDef mat-header-cell mat-sort-header>Тип документа</th>
+                <td *matCellDef="let doctype" mat-cell>
+                    {{doctype.title}}
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="action">
                 <th *matHeaderCellDef mat-header-cell>Действие</th>
-                <td *matCellDef="let sender" mat-cell>
+                <td *matCellDef="let doctype" mat-cell>
                     <button type="button"
                             title="Редактировать"
                             class="btn btn-primary btn-link btn-sm"
-                            (click)="editSender(sender)">
-                            <i class="material-icons">edit</i>
-                            <div class="ripple-container"></div>
+                            (click)="editDoctype(doctype)">
+                        <i class="material-icons">edit</i>
+                        <div class="ripple-container"></div>
                     </button>
 
                     <button type="button"
                             title="Удалить"
                             class="btn btn-danger btn-link btn-sm"
-                            (click)="deleteSender(sender)"
+                            (click)="deleteDoctype(doctype)"
                     >
                         <i class="material-icons">close</i>
                     </button>

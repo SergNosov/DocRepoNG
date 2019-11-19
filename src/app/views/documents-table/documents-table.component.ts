@@ -1,5 +1,4 @@
 import {Component, Inject, LOCALE_ID, OnInit} from '@angular/core';
-import {DataService} from "../../service/data.service";
 import {Document} from "../../model/Document";
 import {formatDate} from "@angular/common";
 import {DocumentService} from "../../service/document.service";

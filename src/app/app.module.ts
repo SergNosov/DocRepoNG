@@ -21,12 +21,14 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatSortModule} from "@angular/material/sort";
 import { SenderRestFormComponent } from './views/sender-rest-form/sender-rest-form.component';
 import {MatDialogModule} from "@angular/material/dialog";
-import { SenderEditDialogComponent } from './views/sender-edit-dialog/sender-edit-dialog.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import { ConfirmDialogComponent } from './views/confirm-dialog/confirm-dialog.component';
+import { DoctypesRestTableComponent } from './views/doctypes-rest-table/doctypes-rest-table.component';
+import { DoctypeRestFormComponent } from './views/doctype-rest-form/doctype-rest-form.component';
+import { DocumentsRestTableComponent } from './views/documents-rest-table/documents-rest-table.component';
 
 @NgModule({
     declarations: [
@@ -41,8 +43,10 @@ import { ConfirmDialogComponent } from './views/confirm-dialog/confirm-dialog.co
         SenderFormComponent,
         SenderRestTableComponent,
         SenderRestFormComponent,
-        SenderEditDialogComponent,
-        ConfirmDialogComponent
+        ConfirmDialogComponent,
+        DoctypesRestTableComponent,
+        DoctypeRestFormComponent,
+        DocumentsRestTableComponent
     ],
     imports: [
         BrowserModule,
@@ -64,7 +68,6 @@ import { ConfirmDialogComponent } from './views/confirm-dialog/confirm-dialog.co
     ],
     providers: [],
     entryComponents: [
-        SenderEditDialogComponent,
         ConfirmDialogComponent
     ],
     bootstrap: [AppComponent]

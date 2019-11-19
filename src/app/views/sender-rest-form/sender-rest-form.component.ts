@@ -2,7 +2,8 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {Sender} from "../../model/Sender";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
-import {SenderServiceImpl} from "../../service_rest/impl/SenderServiceImpl";
+import {SendersServiceImpl} from "../../service_rest/impl/SendersServiceImpl";
+import {ConfirmDialogComponent} from "../confirm-dialog/confirm-dialog.component";
 
 @Component({
     selector: 'app-sender-rest-form',
@@ -15,9 +16,10 @@ export class SenderRestFormComponent implements OnInit {
     private tempSenderFormData: FormGroup;
 
     constructor(private fb: FormBuilder,
-                private senderService: SenderServiceImpl,
+                private senderService: SendersServiceImpl,
                 private router: Router,
-                private activateRoute: ActivatedRoute) {
+                private activateRoute: ActivatedRoute
+    ) {
     }
 
     ngOnInit() {

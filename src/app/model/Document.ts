@@ -8,7 +8,7 @@ export class Document {
   private _title: string;
   private _doctype: Doctype;
   private _senders: Sender[];
-  private _context?: string;
+  private _content?: string;
 
   constructor(id: number, date: Date, title: string, doctype: Doctype, senders: Sender[], num?: string, context?: string) {
     this._id = id;
@@ -17,7 +17,7 @@ export class Document {
     this._title = title;
     this._doctype = doctype;
     this._senders = senders;
-    this._context = context;
+    this._content = context;
   }
 
   get id(): number {
@@ -68,12 +68,12 @@ export class Document {
     this._senders = value;
   }
 
-  get context(): string {
-    return this._context;
+  get content(): string {
+    return this._content;
   }
 
-  set context(value: string) {
-    this._context = value;
+  set content(value: string) {
+    this._content = value;
   }
 
   toString(): string {

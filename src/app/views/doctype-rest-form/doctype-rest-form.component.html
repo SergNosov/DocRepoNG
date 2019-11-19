@@ -1,26 +1,26 @@
 <div class="col-md-8">
     <div class="card">
         <div class="card-header card-header-primary">
-            <h4 class="card-title">Редактирование сведений отправителя</h4>
+            <h4 class="card-title">Редактирование типов документов</h4>
             <p class="card-category">(*) - поля обязательные для ввода</p>
         </div>
         <div class="card-body">
-            <form [formGroup]="tempSenderFormData" (ngSubmit)="onSubmit()">
+            <form [formGroup]="tempDoctypeFormData" (ngSubmit)="onSubmit()">
                 <div class="row">
                     <div class="col-md-2">
                         <div class="form-group bmd-form-group">
                             <label>Id</label>
-                            <label  class="form-control">{{tempSender.id}}</label>
+                            <label  class="form-control">{{tempDoctype.id}}</label>
                         </div>
                     </div>
                     <div class="col-md-7">
                         <div class="form-group bmd-form-group">
-                            <label>Наименование отправителя(*)</label>
+                            <label>Тип документа(*)</label>
                             <input  type="text" class="form-control"  formControlName="title">
-                            <div class="alert alert-danger small" *ngIf="tempSenderFormData.controls['title'].invalid &&
-                                                                tempSenderFormData.controls['title'].touched"
+                            <div class="alert alert-danger small" *ngIf="tempDoctypeFormData.controls['title'].invalid &&
+                                                                tempDoctypeFormData.controls['title'].touched"
                             >
-                                Не указано наименование отправителя.
+                                Не указан тип документа.
                             </div>
                         </div>
                     </div>
@@ -28,9 +28,10 @@
 
                 <button type="submit" class="btn btn-primary pull-right" >Сохранить</button>
                 <div class="clearfix">
-                    <a href="/sendersRest">вернуться к списку отправителей</a>
+                    <a href="/doctypesRest">вернуться к списку типов документов</a>
                 </div>
             </form>
         </div>
     </div>
 </div>
+

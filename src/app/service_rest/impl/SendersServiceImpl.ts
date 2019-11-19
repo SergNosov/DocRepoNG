@@ -1,18 +1,17 @@
-import {SenderDao} from "../../dao/interface/SenderDao";
-import {SenderService} from "../interface/SenderService";
+import {SendersService} from "../interface/SendersService";
 import {Observable} from "rxjs";
 import {CommonMessage} from "../../model/Common-message";
 import {Sender} from "../../model/Sender";
 import {Injectable} from "@angular/core";
-import {SenderDaoImpl} from "../../dao/impl/SenderDaoImpl";
+import {SendersDaoImpl} from "../../dao/impl/SendersDaoImpl";
 
 @Injectable({
     providedIn: 'root'
 })
 
-export class SenderServiceImpl implements SenderService {
+export class SendersServiceImpl implements SendersService {
 
-    constructor(private senderDao: SenderDaoImpl) {
+    constructor(private senderDao: SendersDaoImpl) {
     }
 
     delete(id: number): Observable<CommonMessage> {
@@ -29,8 +28,10 @@ export class SenderServiceImpl implements SenderService {
 
     saveOrUpdate(sender: Sender): Observable<Sender> {
         if (sender.id == 0) {
+            console.log("SenderServiseImpl.save");
             return this.senderDao.save(sender);
         } else {
+            console.log("SenderServiseImpl.update");
             return this.senderDao.update(sender);
         }
     }

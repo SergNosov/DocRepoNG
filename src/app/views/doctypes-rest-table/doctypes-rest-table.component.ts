@@ -1,20 +1,20 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {Sender} from "../../model/Sender";
 import {MatTableDataSource} from "@angular/material/table";
-import {Router} from "@angular/router";
+import {Doctype} from "../../model/Doctype";
 import {MatSort} from "@angular/material/sort";
 import {MatPaginator} from "@angular/material/paginator";
-import {SendersServiceImpl} from "../../service_rest/impl/SendersServiceImpl";
+import {DoctypesServiceImpl} from "../../service_rest/impl/DoctypesServiceImpl";
+import {Router} from "@angular/router";
 
 @Component({
-    selector: 'app-sender-rest-table',
-    templateUrl: './sender-rest-table.component.html',
-    styleUrls: ['./sender-rest-table.component.css']
+    selector: 'app-doctypes-rest-table',
+    templateUrl: './doctypes-rest-table.component.html',
+    styleUrls: ['./doctypes-rest-table.component.css']
 })
-export class SenderRestTableComponent implements OnInit, AfterViewInit {
+export class DoctypesRestTableComponent implements OnInit, AfterViewInit {
 
     private displayedColumns: string[] = ['id', 'title', 'action'];
-    private dataSource: MatTableDataSource<Sender>;
+    private dataSource: MatTableDataSource<Doctype>;
 
     @ViewChild(MatSort, {static: false})
     private sort: MatSort;
@@ -22,9 +22,8 @@ export class SenderRestTableComponent implements OnInit, AfterViewInit {
     @ViewChild(MatPaginator, {static: false})
     private paginator: MatPaginator;
 
-    constructor(private senderService: SendersServiceImpl,
-                private router: Router
-                ) {
+    constructor(private doctypesService: DoctypesServiceImpl,
+                private router: Router) {
     }
 
     ngOnInit() {
@@ -36,17 +35,19 @@ export class SenderRestTableComponent implements OnInit, AfterViewInit {
         this.addTableObjects();
     }
 
-    public newSender(): void {
-        this.router.navigate(['/senderRest/0']);
+
+    newDoctype(): void {
+        this.router.navigate(['/doctypesRest/0']);
     }
 
-    public editSender(sender: Sender): void {
-        this.router.navigate(['/senderRest/' + sender.id]);
+
+    editDoctype(doctype: Doctype): void {
+        this.router.navigate(['/doctypesRest/' + doctype.id]);
     }
 
-    public deleteSender(sender: Sender): void {
-        if (confirm("Удалить отправителя: id = " + sender.id + "; " + sender.title + "?")) {
-            this.senderService.delete(sender.id).subscribe(
+    deleteDoctype(doctype: Doctype) {
+        if (confirm("Удалить тип документа: id = " + doctype.id + "; " + doctype.title + "?")) {
+            this.doctypesService.delete(doctype.id).subscribe(
                 data => {
                     console.log(data.valueOf());
                     this.reloadData();
@@ -54,20 +55,20 @@ export class SenderRestTableComponent implements OnInit, AfterViewInit {
                 },
                 error => {
                     console.log(error.valueOf());
-                    alert("Невозможно удалить отправителя: id = " + sender.id + "\n" + error.message);
+                    alert("Невозможно удалить тип документа: id = " + doctype.id + "\n" + error.message);
                 });
         }
     }
 
-    private reloadData(): void {
+    private reloadData() {
         this.getAll();
         this.addTableObjects();
         this.setSortingDataAccessor();
     }
 
-    private getAll():void {
+    private getAll(): void {
         console.log("getAll()")
-        this.senderService.getAll()
+        this.doctypesService.getAll()
             .subscribe(data => {
                 this.dataSource.data = data;
                 data.forEach((item, index) => {
@@ -81,7 +82,7 @@ export class SenderRestTableComponent implements OnInit, AfterViewInit {
         this.dataSource.paginator = this.paginator;
     }
 
-    private setSortingDataAccessor():void {
+    private setSortingDataAccessor(): void {
         this.dataSource.sortingDataAccessor = (sender, colname) => {
             switch (colname) {
                 case 'id': {

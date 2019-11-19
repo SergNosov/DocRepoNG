@@ -1,4 +1,4 @@
-import {SenderDao} from "../interface/SenderDao";
+import {SendersDao} from "../interface/SendersDao";
 import {Sender} from "../../model/Sender";
 import {Observable} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
@@ -9,7 +9,7 @@ import {Injectable} from "@angular/core";
     providedIn: 'root'
 })
 
-export class SenderDaoImpl implements SenderDao {
+export class SendersDaoImpl implements SendersDao {
     private senderURL = 'http://localhost:8080/api/senders';
 
     constructor(private http: HttpClient) {
@@ -38,13 +38,7 @@ export class SenderDaoImpl implements SenderDao {
         let headers = new HttpHeaders({'Content-Type': 'application/json'});
         let options = {headers: headers};
         const body = {id: sender.id, title: sender.title};
-        console.log("senderDao.update body:"+body.id+";"+ body.title);
-        let returnSender: Observable<Sender> = this.http.put<Sender>(this.senderURL, body, options);
-
-        returnSender.subscribe(data => {
-            let sender:Sender = data;
-            console.log("senderDao.update returnSender:"+sender.id+";"+ sender.title);
-        })
-        return returnSender;
+        console.log("senderDao.update body:" + body.id + ";" + body.title);
+        return this.http.put<Sender>(this.senderURL, body, options);
     }
 }

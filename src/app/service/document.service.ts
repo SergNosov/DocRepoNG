@@ -56,7 +56,7 @@ export class DocumentService extends BaseService<Document>{
             if (newDoc.id == doc.id){
                 doc.num = newDoc.num;
                 doc.date = newDoc.date;
-                doc.context = newDoc.context;
+                doc.content = newDoc.content;
                 doc.title = newDoc.title;
                 doc.doctype = newDoc.doctype;
                 doc.senders = newDoc.senders;

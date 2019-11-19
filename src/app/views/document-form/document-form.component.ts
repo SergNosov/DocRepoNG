@@ -52,7 +52,7 @@ export class DocumentFormComponent implements OnInit {
               docType: this.tempDoc.doctype,
               senders: this.tempDoc.senders,
               title: this.tempDoc.title,
-              context: this.tempDoc.context
+              context: this.tempDoc.content
           });
           this.forBarCode = this.tempDoc.toString();
       }
