@@ -2,85 +2,86 @@ import {Doctype} from './Doctype';
 import {Sender} from './Sender';
 
 export class Document {
-  private _id: number;
-  private _num?: string;
-  private _date: Date;
-  private _title: string;
-  private _doctype: Doctype;
-  private _senders: Sender[];
-  private _content?: string;
+    private _id: number;
+    private _number?: string;
+    private _docDate: Date;
+    private _title: string;
+    private _doctype: Doctype;
+    private _senders: Sender[];
+    private _content?: string;
 
-  constructor(id: number, date: Date, title: string, doctype: Doctype, senders: Sender[], num?: string, context?: string) {
-    this._id = id;
-    this._num = num;
-    this._date = date;
-    this._title = title;
-    this._doctype = doctype;
-    this._senders = senders;
-    this._content = context;
-  }
+    constructor(id: number, date: Date, title: string, doctype: Doctype, senders: Sender[], num?: string, context?: string) {
+        this._id = id;
+        this._number = num;
+        this._docDate = date;
+        this._title = title;
+        this._doctype = doctype;
+        this._senders = senders;
+        this._content = context;
+    }
 
-  get id(): number {
-    return this._id;
-  }
+    get id(): number {
+        return this._id;
+    }
 
-  set id(value: number) {
-    this._id = value;
-  }
+    set id(value: number) {
+        this._id = value;
+    }
 
-  get num(): string {
-    return this._num;
-  }
+    get number(): string {
+        return this._number;
+    }
 
-  set num(value: string) {
-    this._num = value;
-  }
+    set number(value: string) {
+        this._number = value;
+    }
 
-  get date(): Date {
-    return this._date;
-  }
+    get docDate(): Date {
+        return this._docDate;
+    }
 
-  set date(value: Date) {
-    this._date = value;
-  }
+    set docDate(value: Date) {
+        this._docDate = value;
+    }
 
-  get title(): string {
-    return this._title;
-  }
+    get title(): string {
+        return this._title;
+    }
 
-  set title(value: string) {
-    this._title = value;
-  }
+    set title(value: string) {
+        this._title = value;
+    }
 
-  get doctype(): Doctype {
-    return this._doctype;
-  }
+    get doctype(): Doctype {
+        return this._doctype;
+    }
 
-  set doctype(value: Doctype) {
-    this._doctype = value;
-  }
+    set doctype(value: Doctype) {
+        this._doctype = value;
+    }
 
-  get senders(): Sender[] {
-    return this._senders;
-  }
+    get senders(): Sender[] {
+        return this._senders;
+    }
 
-  set senders(value: Sender[]) {
-    this._senders = value;
-  }
+    set senders(value: Sender[]) {
+        this._senders = value;
+    }
 
-  get content(): string {
-    return this._content;
-  }
+    get content(): string {
+        return this._content;
+    }
 
-  set content(value: string) {
-    this._content = value;
-  }
+    set content(value: string) {
+        this._content = value;
+    }
 
-  toString(): string {
-    return this.id + " " +
-        this.num + " "+
-        this.date + " "+
-        this.title + " "+
-        this.doctype + " "
-  }
+    toString(): string {
+        return this.id + "; " +
+            this.number + "; " +
+            this.docDate + "; " +
+            this.title + "; " +
+            this.doctype.id + "; "+
+            this.doctype.title + "; "
+    }
 }

@@ -22,8 +22,8 @@ export class DocumentsTableComponent implements OnInit {
   }
 
   deleteDocument(doc: Document) {
-    const dateDoc = formatDate(doc.date, 'dd.MM.yyyy',this.locale);
-    if(confirm("Удалить документ: "+doc.doctype.title+" № "+doc.num+" от "+ dateDoc)) {
+    const dateDoc = formatDate(doc.docDate, 'dd.MM.yyyy',this.locale);
+    if(confirm("Удалить документ: "+doc.doctype.title+" № "+doc.number+" от "+ dateDoc)) {
       this.documentService.delete(doc);
     }
   }

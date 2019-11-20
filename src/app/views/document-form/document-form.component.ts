@@ -16,8 +16,8 @@ import {SenderService} from "../../service/sender.service";
 })
 export class DocumentFormComponent implements OnInit {
   private tempDoc: Document = null;
-  private doctypes: Doctype[];
-  private senders: Sender[];
+  private doctypes: Doctype[]=[];
+  private senders: Sender[]=[];
   private tempDocFormData:  FormGroup;
   private forBarCode:String;
   elementType : 'url' | 'canvas' | 'img' = 'url';
@@ -45,10 +45,12 @@ export class DocumentFormComponent implements OnInit {
       });
 
       if (this.tempDoc !=null) {
+          console.log("tempDoc:"+this.tempDoc);
+          //this.tempDoc.doctype=new Doctype(123,'!!!!!!!');
           this.tempDocFormData.setValue({
               id: this.tempDoc.id,
-              ndoc: this.tempDoc.num,
-              dateDoc: this.dateToString(this.tempDoc.date),
+              ndoc: this.tempDoc.number,
+              dateDoc: this.dateToString(this.tempDoc.docDate),
               docType: this.tempDoc.doctype,
               senders: this.tempDoc.senders,
               title: this.tempDoc.title,
@@ -74,7 +76,7 @@ export class DocumentFormComponent implements OnInit {
                 }
             }
         } else {
-            if(confirm("Сохранить новый документ: "+newDoc.title+" № "+newDoc.num + " от "+newDoc.date+ "?")) {
+            if(confirm("Сохранить новый документ: "+newDoc.title+" № "+newDoc.number + " от "+newDoc.docDate+ "?")) {
                 this.documentService.save(newDoc);
             }
         }

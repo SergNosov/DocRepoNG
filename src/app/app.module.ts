@@ -29,6 +29,7 @@ import { ConfirmDialogComponent } from './views/confirm-dialog/confirm-dialog.co
 import { DoctypesRestTableComponent } from './views/doctypes-rest-table/doctypes-rest-table.component';
 import { DoctypeRestFormComponent } from './views/doctype-rest-form/doctype-rest-form.component';
 import { DocumentsRestTableComponent } from './views/documents-rest-table/documents-rest-table.component';
+import { DocumentRestFormComponent } from './views/document-rest-form/document-rest-form.component';
 
 @NgModule({
     declarations: [
@@ -46,7 +47,8 @@ import { DocumentsRestTableComponent } from './views/documents-rest-table/docume
         ConfirmDialogComponent,
         DoctypesRestTableComponent,
         DoctypeRestFormComponent,
-        DocumentsRestTableComponent
+        DocumentsRestTableComponent,
+        DocumentRestFormComponent
     ],
     imports: [
         BrowserModule,

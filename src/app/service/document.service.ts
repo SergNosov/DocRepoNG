@@ -54,8 +54,8 @@ export class DocumentService extends BaseService<Document>{
     update(newDoc: Document) {
         this.entitys.forEach(function (doc :Document) {
             if (newDoc.id == doc.id){
-                doc.num = newDoc.num;
-                doc.date = newDoc.date;
+                doc.number = newDoc.number;
+                doc.docDate = newDoc.docDate;
                 doc.content = newDoc.content;
                 doc.title = newDoc.title;
                 doc.doctype = newDoc.doctype;

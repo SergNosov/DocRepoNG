@@ -33,8 +33,8 @@ export class DocumentsDaoImpl implements DocumentsDao {
         let options = {headers: headers};
         const body = {
             id: 0,
-            num: document.num,
-            date: document.date,
+            num: document.number,
+            date: document.docDate,
             title: document.title,
             doctype: {
                 id: document.doctype.id,
