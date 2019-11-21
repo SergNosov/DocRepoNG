@@ -91,28 +91,37 @@ export class DocumentServiceImpl implements DocumentsService {
     public isEq(x: Document, y: Document):boolean{
 
         if (x.id != y.id){
+            console.log("isEq: 1");
             return false;
         }
 
         if (x.number != y.number){
+            console.log("isEq: 2");
             return false;
         }
 
         if (x.docDate != y.docDate){
+            console.log("isEq: 3");
+            console.log("isEq: x.docDate:"+x.docDate);
+            console.log("isEq: y.docDate:"+y.docDate);
             return false;
         }
 
         if (x.title != y.title){
+            console.log("isEq: 4");
             return false;
         }
         if (x.content != y.content){
+            console.log("isEq: 5");
             return false;
         }
         if (x.doctype.title != y.doctype.title){
+            console.log("isEq: 6");
             return false;
         }
 
         if (x.senders.length != y.senders.length){
+            console.log("isEq: 7");
             return false;
         }
 
@@ -121,9 +130,11 @@ export class DocumentServiceImpl implements DocumentsService {
             y.senders.forEach((itemY,indexY)=>{
                 if (itemX.title==itemY.title){
                     xySenders=true;
+                    console.log("itemX.title == itemY.title"+itemX.title==itemY.title);
+                    console.log("itemX.title: "+itemX.title+"\nitemY.title: "+itemY.title);
                 }
             })
-        })
+        });
 
         return xySenders;
     }

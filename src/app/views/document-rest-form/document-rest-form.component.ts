@@ -144,7 +144,8 @@ export class DocumentRestFormComponent implements OnInit {
             console.log("newDoc from component:" + newDoc.toString());
 
             if (this.tempDoc.id != 0) {
-                if (!this.documentService.isEquals(newDoc, this.tempDoc)) {
+               // if (!this.documentService.isEquals(newDoc, this.tempDoc)) {
+                if (!this.documentService.isEq(newDoc, this.tempDoc)) {
                     if (confirm("Сохранить изменения в документе c id=" + this.tempDoc.id)) {
                         this.documentService.saveOrUpdate(newDoc).subscribe(data=>{
                                 alert("Документ с id:"+data.id+"изменен.");
