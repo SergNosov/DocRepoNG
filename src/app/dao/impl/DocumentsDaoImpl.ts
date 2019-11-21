@@ -28,25 +28,19 @@ export class DocumentsDaoImpl implements DocumentsDao {
         return this.http.get<Document>(this.documentsURL + '/' + id);
     }
 
-    save(document: Document): Observable<Document> {
-        let headers = new HttpHeaders({'Content-Type': 'application/json'});
-        let options = {headers: headers};
-        const body = {
-            id: 0,
-            num: document.number,
-            date: document.docDate,
-            title: document.title,
-            doctype: {
-                id: document.doctype.id,
-                title: document.doctype.title
-            },
-            senders: document.senders,
-            content: document.content
-        };
+    save(doc: Document): Observable<Document> {
+        const headers: HttpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
+        const options = {headers: headers};
+        const body = JSON.stringify(doc).replace(/_/g,'');
         return this.http.post<Document>(this.documentsURL, body, options);
     }
 
-    update(T): Observable<Document> {
-        return undefined;
+    update(doc: Document): Observable<Document> {
+        const headers: HttpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
+        const options = {headers: headers};
+        const body = JSON.stringify(doc).replace(/_/g,'');
+        console.log("update body: "+body);
+
+        return this.http.put<Document>(this.documentsURL, body, options);
     }
 }

@@ -10,14 +10,14 @@ export class Document {
     private _senders: Sender[];
     private _content?: string;
 
-    constructor(id: number, date: Date, title: string, doctype: Doctype, senders: Sender[], num?: string, context?: string) {
+    constructor(id: number, date: Date, title: string, doctype: Doctype, senders: Sender[], num?: string, content?: string) {
         this._id = id;
         this._number = num;
         this._docDate = date;
         this._title = title;
         this._doctype = doctype;
         this._senders = senders;
-        this._content = context;
+        this._content = content;
     }
 
     get id(): number {
@@ -77,11 +77,12 @@ export class Document {
     }
 
     toString(): string {
-        return this.id + "; " +
-            this.number + "; " +
-            this.docDate + "; " +
-            this.title + "; " +
-            this.doctype.id + "; "+
-            this.doctype.title + "; "
+        return "[Document]: \n"+"id: "+this.id + "; \n" +
+            "number: "+this.number + "; \n" +
+            "docDate: "+this.docDate + "; \n" +
+            "title: "+this.title + "; \n" +
+            "doctype.id: "+this.doctype.id + "; \n"+
+            "doctype.title: "+this.doctype.title + "; \n"+
+            "senders count: "+this.senders.length+";\n";
     }
 }

@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Doctype} from "../../model/Doctype";
-import {DataService} from "../../service/data.service";
 import {Sender} from "../../model/Sender";
 import {DocumentService} from "../../service/document.service";
 import {Document} from "../../model/Document";
@@ -45,8 +44,6 @@ export class DocumentFormComponent implements OnInit {
       });
 
       if (this.tempDoc !=null) {
-          console.log("tempDoc:"+this.tempDoc);
-          //this.tempDoc.doctype=new Doctype(123,'!!!!!!!');
           this.tempDocFormData.setValue({
               id: this.tempDoc.id,
               ndoc: this.tempDoc.number,

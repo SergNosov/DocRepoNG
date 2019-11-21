@@ -3,9 +3,8 @@ import {Document} from "../../model/Document";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatSort} from "@angular/material/sort";
 import {MatPaginator} from "@angular/material/paginator";
-import {DoctypesServiceImpl} from "../../service_rest/impl/DoctypesServiceImpl";
 import {Router} from "@angular/router";
-import {DocumentsDaoImpl} from "../../dao/impl/DocumentsDaoImpl";
+import {DocumentServiceImpl} from "../../service_rest/impl/DocumentServiceImpl";
 
 @Component({
     selector: 'app-documents-rest-table',
@@ -23,7 +22,7 @@ export class DocumentsRestTableComponent implements OnInit, AfterViewInit {
     @ViewChild(MatPaginator, {static: false})
     private paginator: MatPaginator;
 
-    constructor(private documentsService: DocumentsDaoImpl,
+    constructor(private documentsService: DocumentServiceImpl,
                 private router: Router) {
     }
 
@@ -38,15 +37,26 @@ export class DocumentsRestTableComponent implements OnInit, AfterViewInit {
 
 
     newDocument(): void {
-
+        this.router.navigate(['/documentRest/' + 0]);
     }
 
     editDocument(document: Document): void {
         this.router.navigate(['/documentRest/' + document.id]);
     }
 
-    deleteDocument(document: Document): void {
-
+    deleteDocument(doc: Document): void {
+        if (confirm("Удалить документ: id = " + doc.id + "; " + doc.title + "?")) {
+            this.documentsService.delete(doc.id).subscribe(
+                data => {
+                    console.log(data.valueOf());
+                    this.reloadData();
+                    alert(data.message);
+                },
+                error => {
+                    console.log(error.valueOf());
+                    alert("Невозможно удалить документ: id = " + doc.id + "\n" + error.message);
+                });
+        }
     }
 
     private reloadData() {
@@ -61,11 +71,13 @@ export class DocumentsRestTableComponent implements OnInit, AfterViewInit {
             .subscribe(data => {
                 this.dataSource.data = data;
                 data.forEach((item, index) => {
+                  /*
                     console.log("data № " + (index + 1) + "; id = " + item.id + ";" +
                         "doctype = " + item.doctype.title + "; " +
                         "number = " + item.number + "; " +
                         "docDate = "+item.docDate+"; "+
                         " title = " + item.title);
+                */
                 })
             });
     }
