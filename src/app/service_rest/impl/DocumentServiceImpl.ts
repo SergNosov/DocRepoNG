@@ -116,8 +116,15 @@ export class DocumentServiceImpl implements DocumentsService {
             return false;
         }
 
-        //todo сравнение массивов
+        let xySenders:boolean = false;
+        x.senders.forEach((itemX,indexX)=>{
+            y.senders.forEach((itemY,indexY)=>{
+                if (itemX.title==itemY.title){
+                    xySenders=true;
+                }
+            })
+        })
 
-        return true;
+        return xySenders;
     }
 }
