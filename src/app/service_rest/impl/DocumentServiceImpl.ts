@@ -130,7 +130,7 @@ export class DocumentServiceImpl implements DocumentsService {
             y.senders.forEach((itemY,indexY)=>{
                 if (itemX.title==itemY.title){
                     xySenders=true;
-                    console.log("itemX.title == itemY.title"+itemX.title==itemY.title);
+                    console.log("itemX.title == itemY.title: "+(itemX.title==itemY.title));
                     console.log("itemX.title: "+itemX.title+"\nitemY.title: "+itemY.title);
                 }
             })

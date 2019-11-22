@@ -7,6 +7,7 @@ import {SendersServiceImpl} from "../../service_rest/impl/SendersServiceImpl";
 import {Doctype} from "../../model/Doctype";
 import {Sender} from "../../model/Sender";
 import {DocumentServiceImpl} from "../../service_rest/impl/DocumentServiceImpl";
+import {RepoUtils} from "../../service/RepoUtils";
 
 @Component({
     selector: 'app-document-rest-form',
@@ -69,7 +70,8 @@ export class DocumentRestFormComponent implements OnInit {
 
                     this.tempDocFormData.setValue({
                         ndoc: this.tempDoc.number,
-                        dateDoc: this.dateToString(this.tempDoc.docDate),
+                      //  dateDoc: this.dateToString(this.tempDoc.docDate),
+                        dateDoc: RepoUtils.dateToString(this.tempDoc.docDate),
                         docType: this.tempDoc.doctype,
                         senders: this.tempDoc.senders,
                         title: this.tempDoc.title,
@@ -115,7 +117,8 @@ export class DocumentRestFormComponent implements OnInit {
         }
     }
 
-    private dateToString(date): string {
+    /*
+    private dateToString(date): string { //todo вынести в отдельный класс?
         const d = new Date(date);
         let month = '' + (d.getMonth() + 1);
         let day = '' + d.getDate();
@@ -129,12 +132,13 @@ export class DocumentRestFormComponent implements OnInit {
         return [year, month, day].join('-');
     }
 
+     */
+
     onSubmit() {
         if (!this.tempDocFormData.invalid) {
-            let tempDate:Date =  new Date(this.tempDocFormData.get('dateDoc').value);
             const newDoc: Document = new Document(
                 this.tempDoc.id,
-                new Date(this.tempDocFormData.get('dateDoc').value),
+                this.tempDocFormData.get('dateDoc').value,
                 this.tempDocFormData.get('title').value,
                 this.tempDocFormData.get('docType').value,
                 this.tempDocFormData.get('senders').value,

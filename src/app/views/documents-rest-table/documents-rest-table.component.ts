@@ -5,6 +5,7 @@ import {MatSort} from "@angular/material/sort";
 import {MatPaginator} from "@angular/material/paginator";
 import {Router} from "@angular/router";
 import {DocumentServiceImpl} from "../../service_rest/impl/DocumentServiceImpl";
+import {RepoUtils} from "../../service/RepoUtils";
 
 @Component({
     selector: 'app-documents-rest-table',
@@ -13,7 +14,8 @@ import {DocumentServiceImpl} from "../../service_rest/impl/DocumentServiceImpl";
 })
 export class DocumentsRestTableComponent implements OnInit, AfterViewInit {
 
-    private displayedColumns: string[] = ['id', 'doctype', 'number','docDate', 'title','action'];
+    private displayedColumns: string[] = ['id', 'doctype', 'number','docDate', 'title','sender','action'];
+   // private displayedColumns: string[] = ['id', 'doctype', 'number','docDate', 'title','action'];
     private dataSource: MatTableDataSource<Document>;
 
     @ViewChild(MatSort, {static: false})
@@ -96,9 +98,16 @@ export class DocumentsRestTableComponent implements OnInit, AfterViewInit {
                 case 'number': {
                     return doc.number;
                 }
-              // case 'docDate': {
-              //   return doc.docDate.toString;
-              // }
+               case 'docDate': {
+                 return RepoUtils.dateToString(doc.docDate);
+               }
+                case 'sender': {
+                    if (doc.senders[0] !=undefined){
+                        return doc.senders[0].title;
+                    } else{
+                        return '';
+                    }
+                }
                 case 'title': {
                     return doc.title;
                 }

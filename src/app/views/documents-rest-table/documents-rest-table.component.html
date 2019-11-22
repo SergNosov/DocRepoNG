@@ -12,6 +12,14 @@
                     <i class="material-icons">playlist_add</i>
                 </button>
             </div>
+            <div class="con2">
+            <button type="button"
+                    title="Обновить"
+                    class="btn  btn-outline-primary btn-sm "
+                    (click)="reloadData()">
+                <i class="material-icons">replay</i>
+            </button>
+        </div>
         </div>
     </div>
     <div class="example-container mat-elevation-z8">
@@ -48,6 +56,17 @@
                 <th *matHeaderCellDef mat-header-cell mat-sort-header>Заголовок</th>
                 <td *matCellDef="let document" mat-cell>
                     {{document.title}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="sender">
+                <th *matHeaderCellDef mat-header-cell mat-sort-header>Отправитель</th>
+                <td *matCellDef="let document"  mat-cell>
+                    <div *ngFor="let sender of document.senders">
+                        <div *ngIf="sender != undefined">
+                            {{ sender.title }}
+                        </div>
+                    </div>
                 </td>
             </ng-container>
 
