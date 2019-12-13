@@ -12,8 +12,13 @@ import {DoctypesRestTableComponent} from "./views/doctypes-rest-table/doctypes-r
 import {DoctypeRestFormComponent} from "./views/doctype-rest-form/doctype-rest-form.component";
 import {DocumentsRestTableComponent} from "./views/documents-rest-table/documents-rest-table.component";
 import {DocumentRestFormComponent} from "./views/document-rest-form/document-rest-form.component";
+import {MainUnitComponent} from "./views/main-unit/main-unit.component";
+import {LoginFormComponent} from "./views/login-form/login-form.component";
 
 const routes: Routes = [
+    {path : 'mainunit', component : MainUnitComponent},
+    {path : 'login', component : LoginFormComponent},
+    {path : '', component : LoginFormComponent},
     {path: 'documents', component: DocumentsTableComponent},
     {path: 'documentsRest', component: DocumentsRestTableComponent},
     {path: 'document', component: DocumentFormComponent},

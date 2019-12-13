@@ -30,6 +30,8 @@ import { DoctypesRestTableComponent } from './views/doctypes-rest-table/doctypes
 import { DoctypeRestFormComponent } from './views/doctype-rest-form/doctype-rest-form.component';
 import { DocumentsRestTableComponent } from './views/documents-rest-table/documents-rest-table.component';
 import { DocumentRestFormComponent } from './views/document-rest-form/document-rest-form.component';
+import { MainUnitComponent } from './views/main-unit/main-unit.component';
+import { LoginFormComponent } from './views/login-form/login-form.component';
 
 @NgModule({
     declarations: [
@@ -48,7 +50,9 @@ import { DocumentRestFormComponent } from './views/document-rest-form/document-r
         DoctypesRestTableComponent,
         DoctypeRestFormComponent,
         DocumentsRestTableComponent,
-        DocumentRestFormComponent
+        DocumentRestFormComponent,
+        MainUnitComponent,
+        LoginFormComponent
     ],
     imports: [
         BrowserModule,

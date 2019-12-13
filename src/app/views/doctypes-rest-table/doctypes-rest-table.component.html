@@ -1,58 +1,67 @@
-<div class="card">
-    <div class="card-header card-header-warning">
-        <div class="container">
-            <div class="con1">
-                <h4 class="card-title">Справочник типов документов</h4>
+<div class="row">
+
+    <div class="col-md-2">
+        <app-categories></app-categories>
+    </div>
+
+    <div class="col-md-10">
+        <div class="card">
+            <div class="card-header card-header-warning">
+                <div class="container">
+                    <div class="con1">
+                        <h4 class="card-title">Справочник типов документов</h4>
+                    </div>
+                    <div class="con2">
+                        <button type="button"
+                                title="Новый"
+                                class="btn  btn-outline-primary btn-sm "
+                                (click)="newDoctype()">
+                            <i class="material-icons">playlist_add</i>
+                        </button>
+                    </div>
+                </div>
             </div>
-            <div class="con2">
-                <button type="button"
-                        title="Новый"
-                        class="btn  btn-outline-primary btn-sm "
-                        (click)="newDoctype()">
-                    <i class="material-icons">playlist_add</i>
-                </button>
+            <div class="example-container mat-elevation-z8">
+                <table mat-table [dataSource]="dataSource" matSort>
+                    <ng-container matColumnDef="id">
+                        <th *matHeaderCellDef mat-header-cell mat-sort-header>id</th>
+                        <td *matCellDef="let doctype" mat-cell>
+                            {{doctype.id}}
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="title">
+                        <th *matHeaderCellDef mat-header-cell mat-sort-header>Тип документа</th>
+                        <td *matCellDef="let doctype" mat-cell>
+                            {{doctype.title}}
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="action">
+                        <th *matHeaderCellDef mat-header-cell>Действие</th>
+                        <td *matCellDef="let doctype" mat-cell>
+                            <button type="button"
+                                    title="Редактировать"
+                                    class="btn btn-primary btn-link btn-sm"
+                                    (click)="editDoctype(doctype)">
+                                <i class="material-icons">edit</i>
+                                <div class="ripple-container"></div>
+                            </button>
+
+                            <button type="button"
+                                    title="Удалить"
+                                    class="btn btn-danger btn-link btn-sm"
+                                    (click)="deleteDoctype(doctype)"
+                            >
+                                <i class="material-icons">close</i>
+                            </button>
+                        </td>
+                    </ng-container>
+                    <tr *matHeaderRowDef="displayedColumns; sticky: true" mat-header-row></tr>
+                    <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+                </table>
+                <mat-paginator [pageSizeOptions]="[5, 10]" showFirstLastButtons></mat-paginator>
             </div>
         </div>
-    </div>
-    <div class="example-container mat-elevation-z8">
-        <table mat-table [dataSource]="dataSource" matSort>
-            <ng-container matColumnDef="id">
-                <th *matHeaderCellDef mat-header-cell mat-sort-header>id</th>
-                <td *matCellDef="let doctype" mat-cell>
-                    {{doctype.id}}
-                </td>
-            </ng-container>
-
-            <ng-container matColumnDef="title">
-                <th *matHeaderCellDef mat-header-cell mat-sort-header>Тип документа</th>
-                <td *matCellDef="let doctype" mat-cell>
-                    {{doctype.title}}
-                </td>
-            </ng-container>
-
-            <ng-container matColumnDef="action">
-                <th *matHeaderCellDef mat-header-cell>Действие</th>
-                <td *matCellDef="let doctype" mat-cell>
-                    <button type="button"
-                            title="Редактировать"
-                            class="btn btn-primary btn-link btn-sm"
-                            (click)="editDoctype(doctype)">
-                        <i class="material-icons">edit</i>
-                        <div class="ripple-container"></div>
-                    </button>
-
-                    <button type="button"
-                            title="Удалить"
-                            class="btn btn-danger btn-link btn-sm"
-                            (click)="deleteDoctype(doctype)"
-                    >
-                        <i class="material-icons">close</i>
-                    </button>
-                </td>
-            </ng-container>
-            <tr *matHeaderRowDef="displayedColumns; sticky: true" mat-header-row></tr>
-            <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
-        </table>
-        <mat-paginator [pageSizeOptions]="[5, 10]" showFirstLastButtons></mat-paginator>
     </div>
 </div>
