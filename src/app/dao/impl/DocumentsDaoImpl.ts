@@ -21,11 +21,13 @@ export class DocumentsDaoImpl implements DocumentsDao {
     }
 
     getAll(): Observable<Document[]> {
-        return this.http.get<Document[]>(this.documentsURL);
+        const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa('mary:fun123') });
+        return this.http.get<Document[]>(this.documentsURL,{headers});
     }
 
     getById(id: number): Observable<Document> {
-        return this.http.get<Document>(this.documentsURL + '/' + id);
+        const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa('mary:fun123') });
+        return this.http.get<Document>(this.documentsURL + '/' + id,{headers});
     }
 
     save(doc: Document): Observable<Document> {
