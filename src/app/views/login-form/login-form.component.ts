@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
+import {TokenService} from "../../service_rest/TokenService";
 
 @Component({
   selector: 'app-login-component',
@@ -12,7 +13,9 @@ export class LoginFormComponent implements OnInit {
   private loginForm: FormGroup;
   private invalidLogin: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private router: Router) { }
+  constructor(private formBuilder: FormBuilder,
+              private router: Router,
+              private tokenService:TokenService) { }
 
   ngOnInit() {
     window.localStorage.removeItem('token');
@@ -23,7 +26,7 @@ export class LoginFormComponent implements OnInit {
   }
 
   onSubmit() {
-    /*
+
     if (this.loginForm.invalid) {
       return;
     }
@@ -31,11 +34,12 @@ export class LoginFormComponent implements OnInit {
       username: this.loginForm.controls.username.value,
       password: this.loginForm.controls.password.value
     }
-     */
+    /*
     this.router.navigate(['/mainunit']);
     console.log('onSubmit()');
-    /*
-    this.apiService.login(loginPayload).subscribe(data => {
+     */
+
+    this.tokenService.login(loginPayload).subscribe(data => {
       debugger;
       if(data.status === 200) {
         window.localStorage.setItem('token', data.result.token);
