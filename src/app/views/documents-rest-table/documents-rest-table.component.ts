@@ -15,8 +15,8 @@ import {RepoUtils} from "../../service/RepoUtils";
 export class DocumentsRestTableComponent implements OnInit, AfterViewInit {
 
     private displayedColumns: string[] = ['id', 'doctype', 'number','docDate', 'title','sender','action'];
-   // private displayedColumns: string[] = ['id', 'doctype', 'number','docDate', 'title','action'];
     private dataSource: MatTableDataSource<Document>;
+    private token:string = '';
 
     @ViewChild(MatSort, {static: false})
     private sort: MatSort;
@@ -29,6 +29,13 @@ export class DocumentsRestTableComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit() {
+        if(!window.localStorage.getItem('token')) {
+            this.router.navigate(['/login']);
+            return;
+        } else {
+            this.token = window.localStorage.getItem('token');
+        }
+
         this.dataSource = new MatTableDataSource();
         this.reloadData();
     }
@@ -68,20 +75,36 @@ export class DocumentsRestTableComponent implements OnInit, AfterViewInit {
     }
 
     private getAll(): void {
-        console.log("getAll()")
+        console.log("getAll()");
+
+        this.documentsService.getAll()
+            .subscribe(data => {
+            this.dataSource.data = data;
+            data.forEach((item, index) => {
+                /*
+                  console.log("data № " + (index + 1) + "; id = " + item.id + ";" +
+                      "doctype = " + item.doctype.title + "; " +
+                      "number = " + item.number + "; " +
+                      "docDate = "+item.docDate+"; "+
+                      " title = " + item.title);
+              */
+            })
+        });
+/*
         this.documentsService.getAll()
             .subscribe(data => {
                 this.dataSource.data = data;
                 data.forEach((item, index) => {
-                  /*
+
                     console.log("data № " + (index + 1) + "; id = " + item.id + ";" +
                         "doctype = " + item.doctype.title + "; " +
                         "number = " + item.number + "; " +
                         "docDate = "+item.docDate+"; "+
                         " title = " + item.title);
-                */
+
                 })
             });
+ */
     }
 
     private addTableObjects(): void {

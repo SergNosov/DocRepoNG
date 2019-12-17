@@ -4,41 +4,43 @@ import {Observable} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {CommonMessage} from "../../model/Common-message";
 import {Injectable} from "@angular/core";
+import {BaseDao} from "../BaseDao";
 
 @Injectable({
     providedIn: 'root'
 })
 
-export class SendersDaoImpl implements SendersDao {
+export class SendersDaoImpl extends BaseDao implements SendersDao {
     private senderURL = 'http://localhost:8080/api/senders';
 
     constructor(private http: HttpClient) {
+        super();
     }
 
     delete(id: number): Observable<CommonMessage> {
-        return this.http.delete<CommonMessage>(this.senderURL + '/' + id);
+        const headers = new HttpHeaders({Authorization: 'Bearer ' + this.token});
+        return this.http.delete<CommonMessage>(this.senderURL + '/' + id,{headers});
     }
 
     getAll(): Observable<Sender[]> {
-        return this.http.get<Sender[]>(this.senderURL);
+        const headers = new HttpHeaders({Authorization: 'Bearer ' + this.token});
+        return this.http.get<Sender[]>(this.senderURL,{headers});
     }
 
     getById(id: number): Observable<Sender> {
-        return this.http.get<Sender>(this.senderURL + '/' + id);
+        const headers = new HttpHeaders({Authorization: 'Bearer ' + this.token});
+        return this.http.get<Sender>(this.senderURL + '/' + id,{headers});
     }
 
     save(sender: Sender): Observable<Sender> {
-        let headers = new HttpHeaders({'Content-Type': 'application/json'});
-        let options = {headers: headers};
+        const headers = new HttpHeaders({Authorization: 'Bearer ' + this.token});
         const body = {id: 0, title: sender.title};
-        return this.http.post<Sender>(this.senderURL, body, options);
+        return this.http.post<Sender>(this.senderURL, body, {headers});
     }
 
     update(sender: Sender): Observable<Sender> {
-        let headers = new HttpHeaders({'Content-Type': 'application/json'});
-        let options = {headers: headers};
+        const headers = new HttpHeaders({Authorization: 'Bearer ' + this.token});
         const body = {id: sender.id, title: sender.title};
-        console.log("senderDao.update body:" + body.id + ";" + body.title);
-        return this.http.put<Sender>(this.senderURL, body, options);
+        return this.http.put<Sender>(this.senderURL, body, {headers});
     }
 }

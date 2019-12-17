@@ -4,39 +4,42 @@ import {Observable} from "rxjs";
 import {CommonMessage} from "../../model/Common-message";
 import {DoctypesDao} from "../interface/DoctypesDao";
 import {Doctype} from "../../model/Doctype";
+import {BaseDao} from "../BaseDao";
 
 @Injectable({
     providedIn: 'root'
 })
-export class DoctypesDaoImpl implements DoctypesDao {
+export class DoctypesDaoImpl extends BaseDao implements DoctypesDao {
     private doctypesURL = 'http://localhost:8080/api/doctypes';
 
     constructor(private http: HttpClient) {
+        super();
     }
 
     delete(id: number): Observable<CommonMessage> {
-        return this.http.delete<CommonMessage>(this.doctypesURL + '/' + id);
+        const headers = new HttpHeaders({Authorization: 'Bearer ' + this.token});
+        return this.http.delete<CommonMessage>(this.doctypesURL + '/' + id,{headers});
     }
 
     getAll(): Observable<Doctype[]> {
-        return this.http.get<Doctype[]>(this.doctypesURL);
+        const headers = new HttpHeaders({Authorization: 'Bearer ' + this.token});
+        return this.http.get<Doctype[]>(this.doctypesURL,{headers});
     }
 
     getById(id: number): Observable<Doctype> {
-        return this.http.get<Doctype>(this.doctypesURL + '/' + id);
+        const headers = new HttpHeaders({Authorization: 'Bearer ' + this.token});
+        return this.http.get<Doctype>(this.doctypesURL + '/' + id,{headers});
     }
 
     save(doctype: Doctype): Observable<Doctype> {
-        let headers = new HttpHeaders({'Content-Type': 'application/json'});
-        let options = {headers: headers};
+        const headers = new HttpHeaders({Authorization: 'Bearer ' + this.token});
         const body = {id: 0, title: doctype.title};
-        return this.http.post<Doctype>(this.doctypesURL, body, options);
+        return this.http.post<Doctype>(this.doctypesURL, body, {headers});
     }
 
     update(doctype: Doctype): Observable<Doctype> {
-        let headers = new HttpHeaders({'Content-Type': 'application/json'});
-        let options = {headers: headers};
+        const headers = new HttpHeaders({Authorization: 'Bearer ' + this.token});
         const body = {id: doctype.id, title: doctype.title};
-        return this.http.put<Doctype>(this.doctypesURL, body, options);
+        return this.http.put<Doctype>(this.doctypesURL, body, {headers});
     }
 }
